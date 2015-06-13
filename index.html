@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" 
+            type="image/x-icon" 
+            href="/favicon.ico">
+        <style type="text/css">
+        body {
+            background-image: url(http://fractalfantasy.net/img/gradient.png), url(http://fractalfantasy.net/img/neutrino.jpg);
+            background-position: center top, fixed;
+            background-size: 10%, 100%;
+            background-repeat: repeat, repeat;
+        }
+        a:link {
+            color : black;
+            background-color : none ;
+        }
+        a:visited {
+            color : black;
+            background-color : none ;
+        }
+        a:hover {
+            color : black;
+            background-color : none ;
+        }
+        img{width:auto;}
+
+        .visceralMinds{
+            pointer-events: none;
+        }
+        </style>
+    </head>
+    <body bgcolor="black">
+        <br>
+        <p>
+        <p id="iframe-holder" align="center">
+        </p>
+        <center><table>
+            <tr>
+                <td>
+                    <img id="prev" onclick="prevImage()" src="https://dl.dropboxusercontent.com/u/5492793/FF/arrowleftnu.png" height="70%" width="70%">
+                </td>
+                <td><img id="banner" height="70%" width="70%"></td>
+                <td><a target="_self">
+                <img id="next" onclick="nextImage()" src="https://dl.dropboxusercontent.com/u/5492793/FF/arrowrightnu.png" height="70%" width="70%"></td>
+            </tr>
+        </table></center>
+        <div id="extra">
+            <p align="center">     
+                <a href="https://geo.itunes.apple.com/us/album/the-lights/id480107352?uo=6" target="itunes_store" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.png) no-repeat;width:165px;height:40px;@media only screen{background-image:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg);}"></a>
+            </p>
+            <p align="center">
+                <img src="img/tracklistvm.png">
+            </p>
+        </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script>
+          var isMobile = false;
+          (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))isMobile = true})(navigator.userAgent||navigator.vendor||window.opera);
+        </script>
+        <script type="text/javascript">
+        var curr = 0;
+        var iframeHtml = function (src) {
+            var str = '<iframe id="iframe1" src="' + src + '" width="800" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+
+            if(isMobile && src == "https://player.vimeo.com/video/130536019?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;loop=1"){
+                 return "<img src='img/VisceralMinds.gif' width='20%' frameborder='0'>"
+            } else if(src == "https://player.vimeo.com/video/130536019?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;loop=1") {
+                return '<iframe class="visceralMinds" id="iframe1" src="' + src + '" width="800" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+            } else {
+                return str;
+            }
+        };
+        var pages = [
+            {
+                img: "",
+                vid: "https://player.vimeo.com/video/130536019?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;loop=1",
+                banner: "img/visceralmindstxt.png",
+                prev: false,
+                showExtra: true
+            },
+            {
+                img: "img/Neutrino.jpg",
+                vid: "https://player.vimeo.com/video/117025827",
+                banner: "img/NeutrinoTxt.png",
+            },
+            {
+                img: "img/Moonstar.jpg",
+                vid: "https://player.vimeo.com/video/83436664",
+                banner: "img/MoonstarTxt.png"
+            },
+            {
+                img: "img/Thunderscan.jpg",
+                vid: "https://player.vimeo.com/video/83390368",
+                banner: "img/ThunderscanTxt.png"
+            },
+            {
+                img: "img/Flashalert.jpg",
+                vid: "https://player.vimeo.com/video/79264470",
+                banner: "img/FlashalertTxt.png"
+            },
+            {
+                img: "img/Ferrofluid.jpg",
+                vid: "https://player.vimeo.com/video/74963452",
+                banner: "img/FerrofluidTxt.png"
+            },
+            {
+                img: "img/Vclipse.jpg",
+                vid: "https://player.vimeo.com/video/52649066",
+                banner: "img/VclipseTxt.png",
+                next: false
+            }
+        ];
+        var preloadImage = function (src) {
+            var Image1= new Image(175,50);
+            Image1.src = src;
+        }
+        var preloader = function () {
+            for (var i = pages.length - 1; i >= 0; i--) {
+                preloadImage(pages[i].img);
+                preloadImage(pages[i].banner);
+            };
+        }
+        var nextImage = function() {
+            if (curr >= pages.length-1) return;
+            var next = ++curr < pages.length ? curr : pages.length - 1;
+            loadPage(next);
+        }
+        var prevImage = function() {
+            if (curr <= 0) return;
+            var prev = --curr < 0 ? 0 : curr;
+            loadPage(prev);
+        }
+        var toggleWith = function (shouldShow, element) {
+            if (shouldShow === false) {
+                element.css('visibility', 'hidden');
+            } else {
+                element.css('visibility', 'visible');
+            }
+        };
+        var showExtra = function(showExtra, element){
+            if(showExtra){
+                element.css("visibility", "visible"); 
+            } else {
+                element.css("visibility", "hidden"); 
+            }
+        }
+        var loadPage = function (position) {
+            var page = pages[position];
+            var iframe = $('#iframe-holder');
+            var banner = $('#banner');
+            iframe.html(iframeHtml(page.vid));
+            banner.attr('src', page.banner);
+            document.body.style.backgroundImage = "url(http://fractalfantasy.net/img//gradient.png),url('"+ page.img +"')";
+            toggleWith(page.prev, $('#prev'));
+            toggleWith(page.next, $('#next'));
+            showExtra(page.showExtra, $('#extra'));
+        }
+
+        // load the first page (start count from zero)
+        loadPage(0);
+        // preload the rest of the pages
+        preloader();
+        </script>
+    </body>
+    <html/>
