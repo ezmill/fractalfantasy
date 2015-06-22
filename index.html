@@ -28,6 +28,13 @@
         .visceralMinds{
             pointer-events: none;
         }
+        #container{
+            width: 100vw;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
         </style>
     </head>
     <body bgcolor="black">
@@ -53,6 +60,7 @@
                 <img src="img/tracklistvm.png">
             </p>
         </div>
+        <div id="container"></div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script>
           var isMobile = false;
@@ -162,5 +170,12 @@
         // preload the rest of the pages
         preloader();
         </script>
+        <script src="js/three.min.js"></script>
+        <script src="js/OrbitControls.js"></script>
+        <script src="js/ThreeJsUtils.js"></script>
+        <script src="js/fresnel.js"></script>
+        <script src="js/textureCubeShader.js"></script>
+        <script src="js/Sparkle.js"></script>
+        <script src="js/main.js"></script>
     </body>
     <html/>
