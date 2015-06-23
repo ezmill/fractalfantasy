@@ -13,13 +13,22 @@ function Sparkle(){
     this.material = new THREE.MeshBasicMaterial( {envMap: reflectionCube, opacity: 0.5, transparent: true} );
     this.material.transparent = true;
     this.material.side = 2;
+    // this.material = sparkleShader();
+    // this.material.side = 2;
 
-    this.geometry = new THREE.PlaneBufferGeometry(3,3);
-    // this.geometry = new THREE.TetrahedronGeometry(6,3);
+    // this.geometry = new THREE.PlaneBufferGeometry(3,3);
+    this.geometry = new THREE.TetrahedronGeometry(0.1);
 	this.mesh = new THREE.Mesh(this.geometry, this.material);
 	this.mesh.scale.set(0.1,0.1,1.0);
 	
 	scene.add(this.mesh);
+
+	this.glowMaterial = sparkleShader();
+	this.glowMesh = new THREE.Mesh(this.geometry, this.glowMaterial);
+	this.glowMesh.scale.set(0.15,0.15,1.0);
+	// this.glowMesh.scale.set(1.003, 1.003, 1.003);
+	scene.add(this.glowMesh);
+
 	this.inc = 0.0;
 
     var zPos = -20;
@@ -43,19 +52,20 @@ function Sparkle(){
 	this.zRot = Math.random()*Math.PI*2;
 
 	this.mesh.position.set(this.xPos, this.yPos, this.zPos);
+	this.glowMesh.position.set(this.xPos, this.yPos, this.zPos);
 
 	// this.hght = -3+Math.random()*6;
 
 	this.update = function(){
 		this.inc+=(this.partSpeed*.01);
 
-		this.mesh.position.x = this.xPos - Math.cos(this.inc)*10; 
-		this.mesh.position.y = this.yPos + Math.sin(this.inc)*10; 
+		this.mesh.position.x = this.glowMesh.position.x = this.xPos - Math.cos(this.inc)*10; 
+		this.mesh.position.y = this.glowMesh.position.y = this.yPos + Math.sin(this.inc)*10; 
 		// this.mesh.position.z = this.zPos + Math.sin(this.inc)*this.hght; 
 
-		this.mesh.rotation.y = this.xRot + Date.now()*0.001; 
-		this.mesh.rotation.x = this.yRot + Date.now()*0.001; 
-		this.mesh.rotation.z = this.zRot + Date.now()*0.001; 
+		this.mesh.rotation.x = this.glowMesh.rotation.x = this.xRot + Date.now()*0.001; 
+		this.mesh.rotation.y = this.glowMesh.rotation.y = this.yRot + Date.now()*0.001; 
+		this.mesh.rotation.z = this.glowMesh.rotation.z = this.zRot + Date.now()*0.001; 
 	}
 	
 }

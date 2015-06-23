@@ -65,6 +65,15 @@ function init() {
         sparkles.push(s);
     }
 
+    // var material = sparkleShader();
+    // var geometry = new THREE.IcosahedronGeometry(10,3);
+    // var mesh = new THREE.Mesh(geometry, material);
+    // mesh.position.set(0,0,-20);
+    // scene.add(mesh);
+    // var mesh2 = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({color:0xffffff}));
+    // mesh2.position.set(0,0,-20);
+    // mesh2.scale.set(0.9,0.9,0.9);
+    // scene.add(mesh2);
     // document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     document.addEventListener( 'keydown', function(){screenshot(renderer)}, false );
     // window.addEventListener( 'resize', onWindowResize, false );
