@@ -60,7 +60,7 @@ function init() {
     reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
     reflectionCube.format = THREE.RGBFormat;
 
-    for(var i = 0; i < 1000; i++){
+    for(var i = 0; i < 200; i++){
         var s = new Sparkle();
         sparkles.push(s);
     }
@@ -74,7 +74,7 @@ function init() {
     // mesh2.position.set(0,0,-20);
     // mesh2.scale.set(0.9,0.9,0.9);
     // scene.add(mesh2);
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    // document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     document.addEventListener( 'keydown', function(){screenshot(renderer)}, false );
     // window.addEventListener( 'resize', onWindowResize, false );
     
@@ -82,14 +82,6 @@ function init() {
 function animate(){
 	window.requestAnimationFrame(animate);
 	draw();
-}
-function onDocumentMouseMove(e){
-    // mouseX = e.clientX - windowHalfX;
-    // mouseY = e.clientY - windowHalfY;
-    console.log(mouseX, mouseY);
-    for(var i = 0; i< sparkles.length; i++){
-        sparkles[i].mouse = new THREE.Vector2(e.clientX/100, e.clientY/100);
-    }
 }
 function draw(){
     time+=0.001;
