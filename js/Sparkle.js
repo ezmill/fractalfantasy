@@ -10,7 +10,7 @@ function Sparkle(){
     uniforms["textureScl"].value = 1.0;
     var parameters = { fragmentShader: shader.fragmentShader, vertexShader: shader.vertexShader, uniforms: uniforms };
     // this.material = new THREE.ShaderMaterial( parameters );
-    this.material = new THREE.MeshBasicMaterial( {envMap: reflectionCube, opacity: 0.5, transparent: true} );
+    this.material = new THREE.MeshBasicMaterial( {envMap: reflectionCube, opacity: 1.0, transparent: true} );
     this.material.transparent = true;
     this.material.side = 2;
     // this.material = sparkleShader();
@@ -19,13 +19,13 @@ function Sparkle(){
     // this.geometry = new THREE.PlaneBufferGeometry(3,3);
     this.geometry = new THREE.TetrahedronGeometry(0.1);
 	this.mesh = new THREE.Mesh(this.geometry, this.material);
-	this.mesh.scale.set(0.1,0.1,1.0);
+	this.mesh.scale.set(0.1,0.1,0.1);
 	
 	scene.add(this.mesh);
 
 	this.glowMaterial = sparkleShader();
 	this.glowMesh = new THREE.Mesh(this.geometry, this.glowMaterial);
-	this.glowMesh.scale.set(0.15,0.15,1.0);
+	this.glowMesh.scale.set(0.15,0.15,0.15);
 	// this.glowMesh.scale.set(1.003, 1.003, 1.003);
 	scene.add(this.glowMesh);
 
@@ -45,7 +45,7 @@ function Sparkle(){
 	// this.xPos = Math.random()*MIN_X + MIN_X;
 	this.yPos = -20+Math.random()*40;
 	// this.yPos = Math.random()*MIN_Y + MIN_Y;
-	this.zPos = -20;
+	this.zPos = -20+Math.random()*40;
 
 	this.xRot = Math.random()*Math.PI*2;
 	this.yRot = Math.random()*Math.PI*2;
@@ -55,12 +55,17 @@ function Sparkle(){
 	this.glowMesh.position.set(this.xPos, this.yPos, this.zPos);
 
 	// this.hght = -3+Math.random()*6;
-
+	this.timer = 0;
 	this.update = function(){
 		this.inc+=(this.partSpeed*.01);
+		this.timer += 0.01;
 
 		this.mesh.position.x = this.glowMesh.position.x = this.xPos - Math.cos(this.inc)*10; 
 		this.mesh.position.y = this.glowMesh.position.y = this.yPos + Math.sin(this.inc)*10; 
+
+		// this.mesh.position.x = this.glowMesh.position.x = Math.sin( this.timer * 2.3 ) * 10.5 + 0.5;
+		// this.mesh.position.y = this.glowMesh.position.y	= Math.cos( this.timer * 2.5 ) * 10.5 + 0.5;
+		// this.mesh.position.z = this.glowMesh.position.z	= Math.sin( this.timer * 2.7 ) * 10.5 + 0.5; 
 		// this.mesh.position.z = this.zPos + Math.sin(this.inc)*this.hght; 
 
 		this.mesh.rotation.x = this.glowMesh.rotation.x = this.xRot + Date.now()*0.001; 

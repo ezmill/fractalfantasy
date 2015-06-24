@@ -26,7 +26,10 @@ function init() {
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100000);
     camera.position.set(0,0, 10);
     // controls = new THREE.OrbitControls(camera);
-    
+    controls = new THREE.OrbitControls2( camera );
+    controls.radius = 10;
+    controls.speed = 1;
+
     scene = new THREE.Scene();
 
     renderer = new THREE.WebGLRenderer( {alpha: true, preserveDrawingBuffer: true} );
@@ -60,7 +63,7 @@ function init() {
     reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
     reflectionCube.format = THREE.RGBFormat;
 
-    for(var i = 0; i < 200; i++){
+    for(var i = 0; i < 2000; i++){
         var s = new Sparkle();
         sparkles.push(s);
     }
@@ -103,6 +106,7 @@ function draw(){
         sparkles[i].update();
     }
 
+                controls.update();
 
 	renderer.render(scene, camera);
 }
