@@ -60,6 +60,13 @@
 			}
 
 		</script>
+		<script id="testVs" type="x-shader/x-vertex">
+			varying vec2 vUv;
+			void main() {
+			    vUv = uv;
+			    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+			}
+		</script>
 
 		<script id="fs" type="x-shader/x-fragment">
 
@@ -126,13 +133,15 @@
 				video = document.createElement( 'video' );
 
 				texture = new THREE.Texture( video );
-				geometry = new THREE.PlaneBufferGeometry(640, 480);
-				material = new THREE.MeshBasicMaterial({map: texture});
-				mesh = new THREE.Mesh(geometry, material);
-				// mesh.rotation.z = Math.PI;
+				video.loop = true;
+				video.src = 'textures/kinect.webm';
+				video.play();
+				vidGeometry = new THREE.PlaneBufferGeometry(640, 480);
+				vidMaterial = new THREE.MeshBasicMaterial({map: texture, transparent:true, opacity:0.0});
+				vidMesh = new THREE.Mesh(vidGeometry, vidMaterial);
+				vidMesh.position.z = 0;
 				// mesh.visible = false;
-				mesh.position.z = 600;
-				scene.add(mesh);
+				scene.add(vidMesh);
 				video.addEventListener( 'loadedmetadata', function ( event ) {
 					var width = 640, height = 480;
 					var nearClipping = 850/*850*/, farClipping = 4000/*4000*/;
@@ -149,7 +158,7 @@
 
 					}
 					// geometry = new THREE.PlaneBufferGeometry(640, 480);
-
+					// var testTex = THREE.ImageUtils.loadTexture("textures/testTex.jpg");
 					material = new THREE.ShaderMaterial( {
 
 						uniforms: {
@@ -166,40 +175,29 @@
 						// depthWrite: false
 
 					} );
+					// material = new THREE.PointCloudMaterial({map: texture});
 					// material = new THREE.MeshBasicMaterial({map: texture});
 
 					mesh = new THREE.PointCloud( geometry, material );
+					// mesh = new THREE.Mesh(geometry, material);
 					mesh.position.x = 0;
 					mesh.position.y = 0;
 					// mesh.position.z = -1000;
 					mesh.rotation.z = Math.PI;
 					scene.add( mesh );
 
-					// setInterval( function () {
-
-					// 	if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
-
-					// 		texture.needsUpdate = true;
-
-					// 	}
-
-					// }, 1000 / 30 );
-
 
 				}, false );
-				video.loop = true;
-				video.src = 'textures/kinect.webm';
-				video.play();
 
 
 				renderer = new THREE.WebGLRenderer({preserveDrawingBuffer:true});
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				// renderer.setClearColor(0xffffff,1.0);
+				renderer.setClearColor(0x000000,1.0);
 				// container.appendChild( renderer.domElement );
 
 				mouse = new THREE.Vector3( 0, 0, 1 );
-				projector = new THREE.Projector();
-				ray = new THREE.Ray( camera.position );
+				// projector = new THREE.Projector();
+				// ray = new THREE.Ray( camera.position );
 
 				// renderer.autoClearColor = false;
 
@@ -220,7 +218,7 @@
 			    
 			    
 			    for(var i = 0; i < fbMaterial.fbos.length; i++){
-			      fbMaterial.fbos[i].material.uniforms.mouse.value = new THREE.Vector2(mouseX, 1.0);
+			      fbMaterial.fbos[i].material.uniforms.mouse.value = new THREE.Vector2(mouseX, 0.5);
 			    }
     
 
@@ -304,7 +302,7 @@
 			    fbMaterial.init();
 
 
-			    document.addEventListener( 'keydown', function(){screenshot(renderer)}, false );
+			    document.addEventListener( 'keydown', function(){screenshot(fbRenderer)}, false );
 			    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 			    // document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 			    // window.addEventListener( 'resize', onWindowResize, false );
