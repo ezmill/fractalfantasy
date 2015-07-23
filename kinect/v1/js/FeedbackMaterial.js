@@ -58,6 +58,7 @@ function FeedbackMaterial(RENDERER, SCENE, CAMERA, TEXTURE, SHADERS){
             side: 2
         });
         this.material.uniforms["texture"].value = this.fbo4.renderTarget;
+        this.material.uniforms["resolution"].value = new THREE.Vector2(window.innerWidth, window.innerHeight);
         
         this.geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight, 0);
         // this.geometry = new THREE.PlaneGeometry(2560/2,1600/2, 0);

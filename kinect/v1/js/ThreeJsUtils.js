@@ -36,6 +36,15 @@ function screenshot(renderer) {
             referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
         }
     }
+    if (event.keyCode == "82") {
+        capturer.start();
+    }
+    if (event.keyCode == "84") {
+        capturer.stop();
+        capturer.save(function(blob) {
+            window.location = blob;
+        });
+    }
 }
 function map(value,max,minrange,maxrange) {
     return ((max-value)/(max))*(maxrange-minrange)+minrange;

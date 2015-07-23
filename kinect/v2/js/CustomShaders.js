@@ -419,7 +419,7 @@ var CustomShaders = function(){
 			"    vec2 tc = vUv;",
 			"    vec4 look = texture2D(texture,tc);",
 			// "    vec2 offs = vec2(look.y-look.x,look.w-look.z)*0.001;",
-			"    vec2 offs = vec2(look.y-look.x,look.w-look.z)*vec2(mouse.x/100.0, mouse.y/100.0);",
+			"    vec2 offs = vec2(look.y-look.x,look.w-look.z)*vec2(mouse.x/10.0, mouse.y/10.0);",
 			"    vec2 coord = offs+tc;",
 			"    vec4 repos = texture2D(texture, coord);",
 			// "    repos*=1.5;",
@@ -631,6 +631,49 @@ var CustomShaders = function(){
 			"}"
 	    ].join("\n")
 
+	},
+	this.blueShader = {
+	    uniforms: THREE.UniformsUtils.merge( [
+
+	        {
+	            "texture"  : { type: "t", value: null },
+	            "mouse"  : { type: "v2", value: null },
+	            "resolution"  : { type: "v2", value: null },
+	            "texture2"  : { type: "t", value: null },
+	            "color"  : { type: "c", value: new THREE.Color('#'+Math.floor(Math.random()*16777215).toString(16)) }
+	        }
+	    ] ),
+
+	    vertexShader: [
+	        "varying vec2 vUv;",
+	        "uniform float time;",
+	        "void main() {",
+	        "    vUv = uv;",
+	        "    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );",
+	        "}"
+	    ].join("\n"),
+
+	    fragmentShader: [
+	        "uniform sampler2D texture; ",
+	        "uniform sampler2D texture2; ",
+	        "uniform vec3 color; ",
+	        "varying vec2 vUv;",
+
+	        "void main() {",
+	        // "    float avg = normalize((texture2D(texture, vUv).rgb + texture2D(texture2, vUv).rgb)*0.5);",
+	        // "    float avg = dot(texture2D(texture2, vUv), vec4(1.0))/3.0;",
+	        // "    float avg = dot(texture2D(texture, vUv).rgb, vec3(1.0))/3.0;",
+	        "    if(texture2D(texture, vUv).g > 0.9){",
+	        "      gl_FragColor = vec4(0.0,0.0,1.0,1.0);",
+	        // "      gl_FragColor = vec4(1.0,0.0,0.0,1.0);",
+	        // "      gl_FragColor = vec4(color,1.0);",
+	        "    }",
+	        "    else {",
+	        "      gl_FragColor = texture2D(texture, vUv);",
+	        "    }",
+	        "    ",
+	        "}"
+	    ].join("\n")
 	}
 }
 
