@@ -150,18 +150,18 @@
 					var width = 640, height = 480;
 					var nearClipping = 850/*850*/, farClipping = 4000/*4000*/;
 
-					geometry = new THREE.Geometry();
+					// geometry = new THREE.Geometry();
 
-					for ( var i = 0, l = width * height; i < l; i ++ ) {
+					// for ( var i = 0, l = width * height; i < l; i ++ ) {
  
-						var position = new THREE.Vector3();
-						position.x = ( i % width );
-						position.y = Math.floor( i / width );
+					// 	var position = new THREE.Vector3();
+					// 	position.x = ( i % width );
+					// 	position.y = Math.floor( i / width );
 
-						geometry.vertices.push( position );
+					// 	geometry.vertices.push( position );
 
-					}
-					// geometry = new THREE.PlaneBufferGeometry(640, 480);
+					// }
+					geometry = new THREE.PlaneBufferGeometry(1000, 1000,500,500);
 					// var testTex = THREE.ImageUtils.loadTexture("textures/testTex.jpg");
 					material = new THREE.ShaderMaterial( {
 
@@ -182,10 +182,10 @@
 					// material = new THREE.PointCloudMaterial({map: texture});
 					// material = new THREE.MeshBasicMaterial({map: texture});
 
-					mesh = new THREE.PointCloud( geometry, material );
-					// mesh = new THREE.Mesh(geometry, material);
-					mesh.position.x = 0;
-					mesh.position.y = 0;
+					// mesh = new THREE.PointCloud( geometry, material );
+					mesh = new THREE.Mesh(geometry, material);
+					mesh.position.x = -500;
+					mesh.position.y = -500;
 					// mesh.position.z = -1000;
 					mesh.rotation.z = Math.PI;
 					scene.add( mesh );

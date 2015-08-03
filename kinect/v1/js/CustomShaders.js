@@ -643,18 +643,18 @@ var CustomShaders = function(){
 			"    vec2 coord = offs+vUv;",
 			"    vec4 repos = texture2D(texture, coord);",
 
-			// "    gl_FragColor = texture2D(texture,uv);",
-			"    gl_FragColor = repos;",
-			// "  vec4 tex0 = repos;",
-			// "  vec3 hsv = rgb2hsv(tex0.rgb);",
-
-			// "  hsv.r += 0.01;",
-			// "  hsv.r = mod(hsv.r, 1.0);",
-			// "  hsv.g *= 1.001;",
-			// "  // hsv.g = mod(hsv.g, 1.0);",
-			// "  vec3 rgb = hsv2rgb(hsv); ",
-
-			// "  gl_FragColor = vec4(rgb,1.0);",
+			"    gl_FragColor = texture2D(texture,uv);",
+			// "    gl_FragColor = repos;",
+			"  vec4 tex0 = repos;",
+			"  vec3 hsv = rgb2hsv(tex0.rgb);",
+// 
+			"  hsv.r += 0.01;",
+			"  hsv.r = mod(hsv.r, 1.0);",
+			"  hsv.g *= 1.001;",
+			"  // hsv.g = mod(hsv.g, 1.0);",
+			"  vec3 rgb = hsv2rgb(hsv); ",
+// 
+			"  gl_FragColor = vec4(rgb,1.0);",
 			"}"
 	    ].join("\n")
 

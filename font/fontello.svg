@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2015 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="volume-up" unicode="&#xe800;" d="m460 727l0-754-234 234-226 0 0 286 226 0z m133-602l-65 63c45 45 68 108 68 168 0 59-21 115-63 159l61 61c61-63 97-144 97-228 0-76-30-156-98-223z m145-131l-70 69c77 77 116 182 116 288 0 105-39 211-116 289l66 66c97-98 151-229 151-361 0-124-46-249-147-350z" horiz-adv-x="885" />
+<glyph glyph-name="volume-down" unicode="&#xe801;" d="m460 727l0-754-234 234-226 0 0 286 226 0z m133-602l-65 63c45 45 68 108 68 168 0 59-21 115-63 159l61 61c61-63 97-144 97-228 0-76-30-156-98-223z" horiz-adv-x="691" />
+<glyph glyph-name="volume-off" unicode="&#xe802;" d="m460 727l0-754-234 234-226 0 0 286 226 0z" horiz-adv-x="460" />
+<glyph glyph-name="play" unicode="&#xe803;" d="m18 797l670-446-670-448 0 894z" horiz-adv-x="705" />
+<glyph glyph-name="pause" unicode="&#xe804;" d="m18-97l0 894 223 0 0-894-223 0z m446 0l0 894 224 0 0-894-224 0z" horiz-adv-x="705" />
+<glyph glyph-name="to-start" unicode="&#xe805;" d="m911-97l-670 448 670 446 0-894z m-893 113l0 669 223 0 0-669-223 0z" horiz-adv-x="928" />
+<glyph glyph-name="to-end" unicode="&#xe806;" d="m18 797l670-446-670-448 0 894z m670-781l0 669 223 0 0-669-223 0z" horiz-adv-x="928" />
+</font>
+</defs>
+</svg>

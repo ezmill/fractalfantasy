@@ -11,6 +11,10 @@
 				margin: 0px;
 				overflow: hidden;
 			}
+			canvas{
+				width: 1440px;
+				height: 742px;
+			}
 		</style>
 	<style type="text/css"></style></head>
 	<body cz-shortcut-listen="true">
@@ -106,7 +110,7 @@
 			var capturer = new CCapture( { format: 'webm', workersPath: 'js/' } );
 			var range = 100.0;
 			var video, texture;
-
+			var expand = false;
 			init();
 			fbInit();
 			animate();
@@ -129,7 +133,7 @@
 				// texture = new THREE.Texture( video );
 				gradient = new Gradient(4,4);
 				gradient.init();
-				// texture = THREE.ImageUtils.loadTexture("textures/gradient.jpg");
+				// texture = THREE.ImageUtils.loadTexture("textures/IMG_2560.jpg");
 				texture = new THREE.Texture( gradient.canvas );
 				geometry = new THREE.PlaneBufferGeometry(window.innerWidth, window.innerHeight);
 				material = new THREE.MeshBasicMaterial({map: texture, transparent: true, opacity:0.0});
@@ -219,8 +223,10 @@
 			function onDocumentMouseDown(){
 				if(counter%2==0){
 					mesh.visible = false;
+					expand = true;
 				} else {
 					mesh.visible = true;
+					expand = false;
 				}
 				counter++;
 			}
@@ -275,7 +281,6 @@
 			    fbRenderer = new THREE.WebGLRenderer({ preserveDrawingBuffer: true/*, alpha: true*/});
 			    fbRenderer.setClearColor(0xffffff, 1.0);
 			    fbRenderer.setSize(window.innerWidth, window.innerHeight);
-			    
 			    container.appendChild(fbRenderer.domElement);
 
 			    fbScene = new THREE.Scene();
@@ -310,7 +315,7 @@
 			        customShaders.flowShader, 
 			        customShaders.diffShader, 
 			        customShaders2.warp2, 
-			        customShaders2.sharpenShader,
+			        customShaders2.blurShader,
 			        customShaders.bumpShader
 			    ];
 
@@ -340,8 +345,9 @@
 			    fbTexture.needsUpdate = true;
 			        
 			    fbMaterial.update();
-			    // fbMaterial.expand(1.01);
-
+			    if(expand){
+				    // fbMaterial.expand(1.01);
+			    }
 			    fbRenderer.render(fbScene, fbCamera);
 
 			    fbMaterial.getNewFrame();
@@ -364,10 +370,10 @@
 			        this.canvas.width = WIDTH;
 			        this.canvas.height = HEIGHT;
 			        this.hue = Math.random()*360;
-			        // this.saturation = Math.random()*100 + 50;
-			        this.saturation = 100;
-			        // this.lightness = Math.random()*65 + 35;
-			        this.lightness = 50;
+			        this.saturation = Math.random()*100 + 50;
+			        // this.saturation = 100;
+			        this.lightness = Math.random()*65 + 35;
+			        // this.lightness = 50;
 			        this.alpha = 1.0;
 			        this.offset = 100;
 			    }
@@ -393,7 +399,8 @@
 			    return 'hsla(' + h + ',' + s + '%,' + l + '%,' + a + ')';
 			}
 
-		</script><div><canvas width="1440" height="743"></canvas></div>
+		</script>
+		<!-- <div><canvas width="1440" height="742"></canvas></div> -->
 	
 
 </body></html>
