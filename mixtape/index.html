@@ -156,8 +156,30 @@
 
 
   </div>
+  <iframe style="display:none;" id="mix" width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/219210929&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+  <script src="jsmixtape/soundcloudAPI.js"></script>
   <script>
-		var music = document.getElementById('music'); // id for audio element
+  var getDuration = function(millis){
+    var dur = {};
+    var units = [
+        {label:"millis",    mod:1000},
+        {label:"seconds",   mod:60},
+        {label:"minutes",   mod:60},
+        {label:"hours",     mod:24},
+        {label:"days",      mod:31}
+    ];
+    // calculate the individual unit values...
+    units.forEach(function(u){
+        millis = (millis - (dur[u.label] = (millis % u.mod))) / u.mod;
+    });
+    // convert object to a string representation...
+    dur.toString = function(){
+        return units.reverse().map(function(u){
+            return dur[u.label] + " " + (dur[u.label]==1?u.label.slice(0,-1):u.label);
+        }).join(', ');
+    };
+    return dur;
+};
 		var duration; // Duration of audio clip
 		var pButton = document.getElementById('pButton'); // play button
 
@@ -170,12 +192,17 @@
 		var volumeBar = document.getElementById('volumeBar'); // timeline
 		var innerVolume = document.getElementById('innerVolume'); // timeline
 		// timeline width adjusted for playhead
-		var timelineWidth = window.innerWidth - 120/* - playhead.offsetWidth;*/;
-		var timelineHeight = 60/* - playhead.offsetWidth;*/;
+		var timelineWidth = window.innerWidth - 120;
+		var timelineHeight = 60;
 		var counter = 0;
 		var volumeBarHeight = 120;
 		var volumeAmt = 1.0;
 		var trackTitle = document.getElementById("trackTitle");
+		var mix = document.getElementById("mix");
+		var song = SC.Widget(mix);
+		var currentDuration;
+		var currentTime;
+		var relativePosition;
 
 		volume.addEventListener("click", function(event){
 			// volumeBar.style.display = "block";
@@ -189,69 +216,49 @@
 			counter++;
 		})	
 		var onvolume = false;
-		volumeBar.addEventListener("click", function(event){
-			movevolumehead(event);
-			music.volume = volumeAmt * volumeClickPercent(event);
-		})	
-		volumeBar.addEventListener("mousedown", function(event){
-			onvolume = true;
-			volumeBar.addEventListener('mousemove', movevolumehead, true);
+		// volumeBar.addEventListener("click", function(event){
+		// 	movevolumehead(event);
+		// 	music.volume = volumeAmt * volumeClickPercent(event);
+		// })	
+		// volumeBar.addEventListener("mousedown", function(event){
+		// 	onvolume = true;
+		// 	volumeBar.addEventListener('mousemove', movevolumehead, true);
+		// })	
 
-		})	
-		// timeupdate event listener
-		music.addEventListener("timeupdate", timeUpdate, false);
-
-		//Makes timeline clickable
 		timeline.addEventListener("click", function (event) {
 			moveplayhead(event);
-			music.currentTime = duration * clickPercent(event);
 		}, false);
 
-		// returns click as decimal (.77) of the total timelineWidth
 		function clickPercent(e) {
 			return (e.pageX - timeline.offsetLeft) / timelineWidth;
 		}
 
 		function volumeClickPercent(e) {
-			// console.log(e.pageY/window.innerHeight);
-			// console.log(innerVolume.offsetTop);
 			return (((window.innerHeight - e.pageY) - timelineHeight)/volumeBarHeight);
 		}
 
-		// Makes playhead draggable 
 		timeline.addEventListener('mousedown', mouseDown, false);
 		window.addEventListener('mouseup', mouseUp, false);
 
-		// Boolean value so that mouse is moved on mouseUp only when the playhead is released 
 		var onplayhead = false;
-		// mouseDown EventListener
 		function mouseDown() {
 			onplayhead = true;
 			window.addEventListener('mousemove', moveplayhead, true);
-			music.removeEventListener('timeupdate', timeUpdate, false);
 		}
-		// mouseUp EventListener
-		// getting input from all mouse clicks
 		function mouseUp(e) {
 			if (onplayhead == true) {
 				moveplayhead(e);
 				window.removeEventListener('mousemove', moveplayhead, true);
-				// change current time
-				music.currentTime = duration * clickPercent(e);
-				music.addEventListener('timeupdate', timeUpdate, false);
 			}
 			onplayhead = false;
 			if(onvolume){
 				movevolumehead(e);
 				volumeBar.removeEventListener('mousemove', movevolumehead, true);
-				music.volume = volumeAmt * volumeClickPercent(e);
+				// music.volume = volumeAmt * volumeClickPercent(e);
 			}
 			onvolume = false;
 		}
-		// mousemove EventListener
-		// Moves playhead as user drags
 		function moveplayhead(e) {
-			console.log("moving")
 			var newMargLeft = e.pageX - timeline.offsetLeft;
 			if (newMargLeft >= 0 && newMargLeft <= timelineWidth) {
 				playhead.style.marginLeft = newMargLeft + "px";
@@ -262,6 +269,8 @@
 			if (newMargLeft > timelineWidth) {
 				playhead.style.marginLeft = timelineWidth + "px";
 			}
+			var newTime = (1 - ((timelineWidth - newMargLeft)/timelineWidth))*currentDuration;
+			song.seekTo(newTime);
 		}
 
 		function movevolumehead(e) {
@@ -281,41 +290,62 @@
 		// timeUpdate 
 		// Synchronizes playhead position with current point in audio 
 		function timeUpdate() {
-			updateTitle();
-			var playPercent = timelineWidth * (music.currentTime / duration);
-			playhead.style.marginLeft = playPercent + "px";
-			if (music.currentTime == duration) {
-				pButton.className = "";
-				pButton.className = "play";
-			}
+			// updateTitle();
+			// var playPercent = timelineWidth * (music.currentTime / duration);
+			// playhead.style.marginLeft = playPercent + "px";
+			// if (music.currentTime == duration) {
+			// 	pButton.className = "";
+			// 	pButton.className = "play";
+			// }
 		}
 
 		//Play and Pause
+		var counter = 0;
 		function play() {
 			// start music
-			if (music.paused) {
-				music.play();
-				// remove play, add pause
-				pButton.className = "";
-				pButton.className = "pause";
-			} else { // pause music
-				music.pause();
-				// remove pause, add play
-				pButton.className = "";
-				pButton.className = "play";
-			}
+			song.isPaused(function(e){
+				if(e){
+					song.play();
+					pButton.className = "";
+					pButton.className = "pause";
+				} else {
+					song.pause();
+					pButton.className = "";
+					pButton.className = "play";	
+				}
+			})
+
+			song.bind(SC.Widget.Events.PLAY, function(e) {
+				song.getCurrentSound(function(currentSound){
+					currentDuration = currentSound.duration;
+					var dur = getDuration(currentSound.duration)
+		        	var str = dur.minutes + ":" + dur.seconds;
+		        	// duration.innerHTML = str;
+				})
+		    });
+    		song.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
+		    	updateTitle();
+				currentTime = e.currentPosition;
+				var time = getDuration(currentTime);
+
+				if(time.seconds < 10){
+					time.seconds = "0" + time.seconds;
+				}
+				var str = time.minutes + ":" + time.seconds;
+				// currentTime.innerHTML = str;
+
+				relativePosition = e.relativePosition;
+				playhead.style.marginLeft = (timelineWidth*relativePosition) + "px";
+			});
 		}
 		function updateTitle(){
 			for(var i = 0; i < tracklist.length; i++){
-				if(music.currentTime>tracklist[i].time){
+				if(currentTime>(tracklist[i].time)*1000){
 					trackTitle.innerHTML = tracklist[i].title
 				}
 			}
 		}
-		// Gets audio file duration
-		music.addEventListener("canplaythrough", function () {
-			duration = music.duration;  
-		}, false);
+
 		window.addEventListener("resize", function(){
 			timelineWidth = window.innerWidth - 120;
 			timeUpdate();
