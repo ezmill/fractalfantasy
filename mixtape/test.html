@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title></title>
+</head>
+<body>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="//connect.soundcloud.com/sdk.js"></script>
+  <div class="container" style="padding:20px">
+    <div class="sixteen columns">
+      <input type="button" href="#" id="stream" class="big button" value="Play" onclick="playTrack()" disabled/>
+    </div>
+  </div>
+  <script>
+	SC.initialize({
+	  client_id: "cd406b735309b14551e8af7a54c8e6f3"
+	});
+
+	var soundToPlay; 
+	// first do async action
+	SC.stream("/tracks/219210929", {
+	  useHTML5Audio: true,
+	  preferFlash: false
+	}, function(sound) {
+	  soundToPlay = sound;
+	  document.querySelector('input').disabled = false;
+	});
+
+	function playTrack () {
+	  soundToPlay.play();
+	}
+	</script>
+</body>
+</html>
