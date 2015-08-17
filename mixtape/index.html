@@ -35,16 +35,16 @@
 		<script src="jsmixtape/jquery.min.js"></script>
 		<script src="//cdn.jsdelivr.net/jquery.marquee/1.3.1/jquery.marquee.min.js"></script>
 
-		<script src="jsmixtape/three.min.js"></script>
-		<script src="jsmixtape/ThreeJsUtils.js"></script>
-		<script src="jsmixtape/FeedbackMaterial.js"></script>
-		<script src="jsmixtape/CustomShaders.js"></script>
-		<script src="jsmixtape/CCapture.min.js"></script>
-		<script src="jsmixtape/gif.js"></script>
-	    <script src="jsmixtape/tracklist.js"></script>
-		<script src="jsmixtape/gif.worker.js"></script>
-		<script src="jsmixtape/Whammy.js"></script>
-		<script src="jsmixtape/main.js"></script>
+		<!-- // <script src="jsmixtape/three.min.js"></script> -->
+		<!-- // <script src="jsmixtape/ThreeJsUtils.js"></script> -->
+		<!-- // <script src="jsmixtape/FeedbackMaterial.js"></script> -->
+		<!-- // <script src="jsmixtape/CustomShaders.js"></script> -->
+		<!-- // <script src="jsmixtape/CCapture.min.js"></script> -->
+		<!-- // <script src="jsmixtape/gif.js"></script> -->
+	    <!-- // <script src="jsmixtape/tracklist.js"></script> -->
+		<!-- // <script src="jsmixtape/gif.worker.js"></script> -->
+		<!-- // <script src="jsmixtape/Whammy.js"></script> -->
+		<!-- // <script src="jsmixtape/main.js"></script> -->
 
 		<script id="vs" type="x-shader/x-vertex">
 		
@@ -225,13 +225,14 @@
 		// 	volumeBar.addEventListener('mousemove', movevolumehead, true);
 		// })	
 		pButton.addEventListener("click", play);
-		pButton.addEventListener("touchstart", play);
+		// pButton.addEventListener("touchstart", play);
 
 		timeline.addEventListener("click", function (event) {
 			moveplayhead(event);
 		}, false);
 		timeline.addEventListener("touchstart", function(e){
 			e.preventDefault();
+			moveplayhead(e);
 			onplayhead = true;
 			window.addEventListener('touchmove', moveplayhead, true);
 
