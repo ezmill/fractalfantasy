@@ -118,7 +118,7 @@
 	<source src="https://dl.dropboxusercontent.com/u/4513096/based%26confused%20mix%20alan%20mix%20for%20ezra.mp3"> 
  	 </audio>
   <div id="audioplayer">
-    <button id="pButton" class="play" onclick="play()"></button>
+    <button id="pButton" class="play"></button>
   		<div id="timeline">
 	  <!--p id="title">
         <img id="titleImg" style="opacity: 0.7" src="img/unctionname2.png" alt="">
@@ -224,7 +224,8 @@
 		// 	onvolume = true;
 		// 	volumeBar.addEventListener('mousemove', movevolumehead, true);
 		// })	
-
+		pButton.addEventListener("click", play);
+		pButton.addEventListener("touchstart", play);
 		timeline.addEventListener("click", function (event) {
 			moveplayhead(event);
 		}, false);
