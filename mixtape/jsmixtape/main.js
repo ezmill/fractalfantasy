@@ -215,7 +215,9 @@
 			    fbMaterial = new FeedbackMaterial(fbRenderer, fbScene, fbCamera, fbTexture, fbShaders);
 			        
 			    fbMaterial.init();
-
+			    for(var i = 0; i < fbMaterial.fbos.length; i++){
+			      fbMaterial.fbos[i].material.uniforms.mouse.value = new THREE.Vector2(0.0, 1.0);
+			    }
 
 			    document.addEventListener( 'keydown', function(){screenshot(fbRenderer)}, false );
 			    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
