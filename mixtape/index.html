@@ -41,6 +41,9 @@
 		<!-- // <script src="jsmixtape/CustomShaders.js"></script> -->
 		<!-- // <script src="jsmixtape/CCapture.min.js"></script> -->
 		<!-- // <script src="jsmixtape/gif.js"></script> -->
+	  <!-- // <script src="//connect.soundcloud.com/sdk.js"></script> -->
+		<script src="//connect.soundcloud.com/sdk-2.0.0.js"></script>
+
 	    <script src="jsmixtape/tracklist.js"></script>
 		<!-- // <script src="jsmixtape/gif.worker.js"></script> -->
 		<!-- // <script src="jsmixtape/Whammy.js"></script> -->
@@ -199,7 +202,22 @@
 		var volumeAmt = 1.0;
 		var trackTitle = document.getElementById("trackTitle");
 		var mix = document.getElementById("mix");
-		var song = SC.Widget(mix);
+		var song;
+		var updater;
+		SC.initialize({
+		  client_id: "cd406b735309b14551e8af7a54c8e6f3"
+		});
+		SC.stream("/tracks/219210929", {
+		  useHTML5Audio: true,
+		  preferFlash: false
+		}, function(sound) {
+		  song = sound;
+		  sound._player.on("positionChange", function(state){
+		  		update();
+		  })
+		  pButton.style.display = "block";
+		});
+
 		var currentDuration;
 		var currentTime;
 		var relativePosition;
@@ -290,7 +308,7 @@
 				playhead.style.marginLeft = timelineWidth + "px";
 			}
 			var newTime = (1 - ((timelineWidth - newMargLeft)/timelineWidth))*currentDuration;
-			song.seekTo(newTime);
+			song.seek(newTime);
 		}
 
 		function movevolumehead(e) {
@@ -323,41 +341,63 @@
 		var counter = 0;
 		function play() {
 			// start music
-			console.log(song);
-			song.isPaused(function(e){
-				if(e){
+			// song.isPaused(function(e){
+				if(song.getState() !== "playing"){
 					song.play();
+					// update();
 					pButton.className = "";
 					pButton.className = "pause";
 				} else {
 					song.pause();
+					// cancelAnimationFrame(updater);
+					// updater = null;
 					pButton.className = "";
 					pButton.className = "play";	
 				}
-			})
+				// song._player._onPositionChange = function(e){
 
-			song.bind(SC.Widget.Events.PLAY, function(e) {
-				song.getCurrentSound(function(currentSound){
-					currentDuration = currentSound.duration;
-					var dur = getDuration(currentSound.duration)
-		        	var str = dur.minutes + ":" + dur.seconds;
-		        	// duration.innerHTML = str;
-				})
-		    });
-    		song.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-		    	updateTitle();
-				currentTime = e.currentPosition;
-				var time = getDuration(currentTime);
+				// }
+			// })
+			// song.bind(SC.Widget.Events.PLAY, function(e) {
+			// 	song.getCurrentSound(function(currentSound){
+			// 		currentDuration = currentSound.duration;
+			// 		var dur = getDuration(currentSound.duration)
+		 //        	var str = dur.minutes + ":" + dur.seconds;
+		 //        	// duration.innerHTML = str;
+			// 	})
+		 //    });
+   //  		song.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
+		 //    	updateTitle();
+			// 	currentTime = e.currentPosition;
+			// 	var time = getDuration(currentTime);
 
-				if(time.seconds < 10){
-					time.seconds = "0" + time.seconds;
-				}
-				var str = time.minutes + ":" + time.seconds;
-				// currentTime.innerHTML = str;
+			// 	if(time.seconds < 10){
+			// 		time.seconds = "0" + time.seconds;
+			// 	}
+			// 	var str = time.minutes + ":" + time.seconds;
+			// 	// currentTime.innerHTML = str;
 
-				relativePosition = e.relativePosition;
-				playhead.style.marginLeft = (timelineWidth*relativePosition) + "px";
-			});
+			// 	relativePosition = e.relativePosition;
+			// 	playhead.style.marginLeft = (timelineWidth*relativePosition) + "px";
+			// });
+		}
+		function update(){
+			updater = requestAnimationFrame(update);
+			currentDuration = song.getDuration();
+			var dur = getDuration(currentDuration);
+			var str = dur.minutes + ":" + dur.seconds;
+			currentTime = song.getCurrentPosition();
+			// currentTime = song._player._prevCurrentPosition;
+			var time = getDuration(currentTime);
+
+			if(time.seconds < 10){
+				time.seconds = "0" + time.seconds;
+			}
+			var str = time.minutes + ":" + time.seconds;
+			// currentTime.innerHTML = str;
+			relativePosition = currentTime/currentDuration;
+			playhead.style.marginLeft = (timelineWidth*relativePosition) + "px";
+			updateTitle();
 		}
 		function updateTitle(){
 			for(var i = 0; i < tracklist.length; i++){

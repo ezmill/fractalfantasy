@@ -138,7 +138,8 @@
 
 				texture = new THREE.Texture( video );
 				video.loop = true;
-				video.src = 'textures/kinect.webm';
+				// video.src = 'textures/kinect.webm';
+				video.src = 'textures/kinect.mp4';
 				video.play();
 				vidGeometry = new THREE.PlaneBufferGeometry(640, 480);
 				vidMaterial = new THREE.MeshBasicMaterial({map: texture, transparent:true, opacity:0.0});
