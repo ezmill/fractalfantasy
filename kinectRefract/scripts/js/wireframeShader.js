@@ -130,7 +130,7 @@ var depthChunck = {
 		// "		- z + 1000.0,",
 		// "		1.0);",
 		// "	vec4 pos = vec4(position.x, position.y, -z*0.05 + 1000.0,1.0);"
-		"	vec4 pos = vec4(position.x, position.y, -z*0.1,1.0);"
+		"	vec4 pos = vec4(position.x, position.y, -z*0.05 ,1.0);"
 		// "	gl_Position = projectionMatrix * modelViewMatrix * pos;"
 
 	].join("\n")
@@ -201,7 +201,7 @@ var wireframeShader = {
 			"    vec3 e = normalize( vec3( modelViewMatrix * pos ) );",
 			"    vec3 n = normalize( normalMatrix * worldNormal );",
 
-			"    vec3 r = reflect( pos.xyz, objectNormal );",
+			"    vec3 r = reflect( normalize(worldNormal), normalize(pos.xyz) );",
 			"    float m = 2. * sqrt( ",
 			"        pow( r.x, 2. ) + ",
 			"        pow( r.y, 2. ) + ",
