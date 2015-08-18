@@ -140,6 +140,7 @@ var wireframeShader = {
 		uniforms: { 
 					"envMap": { type: "t", value: null },
 					"map": { type: "t", value: null },
+					"tMatCap": { type: "t", value: null },
 					"flipEnvMap": { type: "f", value: 1.0 },
 					"time": { type: "f", value: 0.0 },
 					"noiseScale":{type: "f", value:0.0},
@@ -160,6 +161,7 @@ var wireframeShader = {
 
 			"varying float noise;",
 			"varying vec2 vUv;",
+			"varying vec2 vN;",
 
 			"uniform float noiseDetail;",
 			"uniform float noiseScale;",
@@ -187,15 +189,24 @@ var wireframeShader = {
 
 		    depthChunck.text,
 
-			"	vec4 mvPosition = modelViewMatrix * vec4( pos.xyz, 1.0 );",
+			"	vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
 			"	gl_Position = projectionMatrix * mvPosition;",
 			"		vec3 objectNormal = normal;",
-			"	vec4 worldPosition = modelMatrix * vec4( pos.xyz, 1.0 );	",
+			"	vec4 worldPosition = modelMatrix * vec4( position, 1.0 );	",
 			"	vec3 worldNormal = transformDirection( objectNormal, modelMatrix );",
 			"	vec3 cameraToVertex = normalize( worldPosition.xyz - cameraPosition );",
 			"	vReflect = refract( cameraToVertex, worldNormal, refractionRatio );",
 			// "	vReflect = reflect( cameraToVertex, worldNormal );",
+			"    vec3 e = normalize( vec3( modelViewMatrix * pos ) );",
+			"    vec3 n = normalize( normalMatrix * worldNormal );",
 
+			"    vec3 r = reflect( e, n );",
+			"    float m = 2. * sqrt( ",
+			"        pow( r.x, 2. ) + ",
+			"        pow( r.y, 2. ) + ",
+			"        pow( r.z + 1., 2. ) ",
+			"    );",
+			"    vN = r.xy / m + .5;",
 			"}"
 
 		].join("\n"),
@@ -205,11 +216,13 @@ var wireframeShader = {
 			"uniform float reflectivity;",
 			"uniform samplerCube envMap;",
 			"uniform sampler2D map;",
+			"uniform sampler2D tMatCap;",
 			"uniform float flipEnvMap;",
 
 			"varying vec3 vReflect;",
 			"varying vec2 vUv;",
 			"uniform vec3 diffuse;",
+			"varying vec2 vN;",
 
 			"void main() {",
 			"	vec3 outgoingLight = vec3( 0.0 );",
@@ -223,8 +236,10 @@ var wireframeShader = {
 
 			// "	vec4 envColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * reflectVec.x, -reflectVec.yz ) );",
 			"	vec4 envColor = texture2D( map, vUv );",
+			"    vec4 color = texture2D( tMatCap, vN );",
+
 			// "	envColor.xyz = inputToLinear( envColor.xyz );",
-			"	outgoingLight = mix( outgoingLight, outgoingLight * envColor.xyz, specularStrength * reflectivity );",
+			"	outgoingLight = mix( outgoingLight, outgoingLight * color.xyz, specularStrength * reflectivity );",
 
 			"	gl_FragColor = vec4( outgoingLight, diffuseColor.a );",
 

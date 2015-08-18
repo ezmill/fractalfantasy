@@ -6,7 +6,7 @@ function RefractiveGeometry(SCENE, POS, ROT, SCALE, OFFSET){
 
     this.shader = wireframeShader;
     // this.shader = matcapShader;
-    // this.geometry = new THREE.SphereGeometry( 400,500,500 );
+    // this.geometry = new THREE.BoxGeometry( 500,500,500,100,100,100 );
     this.geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight,500,500);
     // this.geometry = new THREE.PlaneGeometry(640,480,10,10);
     this.geometry.mergeVertices();
@@ -49,7 +49,7 @@ function RefractiveGeometry(SCENE, POS, ROT, SCALE, OFFSET){
     })
     this.material.uniforms["time"].value = this.time;
     this.material.uniforms["envMap"].value = this.textureCube;
-    // this.material.uniforms["tMatCap"].value = THREE.ImageUtils.loadTexture("assets/tex/944_large_remake2.jpg");
+    this.material.uniforms["tMatCap"].value = THREE.ImageUtils.loadTexture("assets/tex/LitSphere_example_3.jpg");
     this.material.uniforms["map"].value = this.texture;
     // this.material.uniforms["flipEnvMap"].value = 1;
     this.material.uniforms["noiseScale"].value = 15.0;
