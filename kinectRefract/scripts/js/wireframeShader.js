@@ -129,7 +129,8 @@ var depthChunck = {
 		// "		( position.y / height - 0.5 ) * z * YtoZ,",
 		// "		- z + 1000.0,",
 		// "		1.0);",
-		"	vec4 pos = vec4(position.x, position.y, -z*0.05 + 1000.0,1.0);"
+		// "	vec4 pos = vec4(position.x, position.y, -z*0.05 + 1000.0,1.0);"
+		"	vec4 pos = vec4(position.x, position.y, -z*0.1,1.0);"
 		// "	gl_Position = projectionMatrix * modelViewMatrix * pos;"
 
 	].join("\n")
@@ -189,10 +190,10 @@ var wireframeShader = {
 
 		    depthChunck.text,
 
-			"	vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+			"	vec4 mvPosition = modelViewMatrix * vec4( pos.xyz, 1.0 );",
 			"	gl_Position = projectionMatrix * mvPosition;",
 			"		vec3 objectNormal = normal;",
-			"	vec4 worldPosition = modelMatrix * vec4( position, 1.0 );	",
+			"	vec4 worldPosition = modelMatrix * vec4( pos.xyz, 1.0 );	",
 			"	vec3 worldNormal = transformDirection( objectNormal, modelMatrix );",
 			"	vec3 cameraToVertex = normalize( worldPosition.xyz - cameraPosition );",
 			"	vReflect = refract( cameraToVertex, worldNormal, refractionRatio );",
@@ -200,7 +201,7 @@ var wireframeShader = {
 			"    vec3 e = normalize( vec3( modelViewMatrix * pos ) );",
 			"    vec3 n = normalize( normalMatrix * worldNormal );",
 
-			"    vec3 r = reflect( e, n );",
+			"    vec3 r = reflect( pos.xyz, objectNormal );",
 			"    float m = 2. * sqrt( ",
 			"        pow( r.x, 2. ) + ",
 			"        pow( r.y, 2. ) + ",
@@ -241,7 +242,8 @@ var wireframeShader = {
 			// "	envColor.xyz = inputToLinear( envColor.xyz );",
 			"	outgoingLight = mix( outgoingLight, outgoingLight * color.xyz, specularStrength * reflectivity );",
 
-			"	gl_FragColor = vec4( outgoingLight, diffuseColor.a );",
+			// "	gl_FragColor = vec4( outgoingLight, diffuseColor.a );",
+			"	gl_FragColor = color;",
 
 			"}"
 

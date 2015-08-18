@@ -49,7 +49,7 @@ function RefractiveGeometry(SCENE, POS, ROT, SCALE, OFFSET){
     })
     this.material.uniforms["time"].value = this.time;
     this.material.uniforms["envMap"].value = this.textureCube;
-    this.material.uniforms["tMatCap"].value = THREE.ImageUtils.loadTexture("assets/tex/LitSphere_example_3.jpg");
+    this.material.uniforms["tMatCap"].value = THREE.ImageUtils.loadTexture("assets/tex/matcap3.jpg");
     this.material.uniforms["map"].value = this.texture;
     // this.material.uniforms["flipEnvMap"].value = 1;
     this.material.uniforms["noiseScale"].value = 15.0;
