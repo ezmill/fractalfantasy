@@ -395,7 +395,47 @@
     	</div>
     	
  		<iframe style="display:none;" id="mix" width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/219210929&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
-		
+	<script> //TEXT SCROLL SCRIPT//
+
+	// $(function() {
+
+	    var txt = $("#trackTitle");
+
+	    txt.bind('scroll', function () {
+	        var el = $(this);
+	        // Scroll state machine
+	        var scrollState = el.data("scrollState") || 0;
+	        el.data("scrollState", (scrollState + 1) % 4);
+	        switch (scrollState) {
+	            case 0: // initial wait
+	                el.css({ left: 0 });
+	                el.show();
+	                window.setTimeout(function () {
+	                    el.trigger("scroll");
+	                }, 5000);
+	                break;
+	            case 1: // start scroll
+	                var delta = el.parent().width() - el.width();
+	                if (delta < 0) {
+	                    el.animate({ left: delta }, 2000, "linear", function () {
+	                        el.trigger("scroll");
+	                    });
+	                }
+	                break;
+	            case 2: // delay before scroll back
+	                window.setTimeout(function () {
+	                    el.trigger("scroll");
+	                }, 2000);
+	                break;
+	            case 3: // fade out
+	                el.fadeOut("slow", function () {
+	                    el.trigger("scroll");
+	                });
+	                break;
+	        }
+	    }).trigger("scroll");
+	// });
+	</script>
   	<script> //PLAYER SCRIPT//
   	
   var getDuration = function(millis){
@@ -427,11 +467,14 @@
 
 		var timeline = document.getElementById('timeline'); // timeline
 
+		var icons = document.getElementById('icons'); // timeline
 		var volume = document.getElementById('volume'); // timeline
+		var half = document.getElementById('half'); // timeline
+		var mute = document.getElementById('mute'); // timeline
 		var volumeBar = document.getElementById('volumeBar'); // timeline
 		var innerVolume = document.getElementById('innerVolume'); // timeline
 		// timeline width adjusted for playhead
-		var timelineWidth = window.innerWidth;
+		var timelineWidth = window.innerWidth -120;
 		var timelineHeight = 60;
 		var counter = 0;
 		var volumeBarHeight = 120;
@@ -458,13 +501,22 @@
 		var currentTime;
 		var relativePosition;
 		var volumeCounter = 0;
-		volume.addEventListener("click", function(event){
+		icons.addEventListener("click", function(event){
 			// volumeBar.style.display = "block";
 			if(volumeCounter%3==0){
+				volume.style.display = "none";
+				half.style.display = "block";
+				mute.style.display = "none";
 				song.setVolume(0.5);
 			} else if (volumeCounter%3==1){
+				volume.style.display = "none";
+				half.style.display = "none";
+				mute.style.display = "block";
 				song.setVolume(0.0);
-			} else {
+			} else if (volumeCounter%3==2){
+				volume.style.display = "block";
+				half.style.display = "none";
+				mute.style.display = "none";
 				song.setVolume(1.0);
 			}
 			volumeCounter++;
@@ -639,6 +691,7 @@
 			for(var i = 0; i < tracklist.length; i++){
 				if(currentTime>(tracklist[i].time)*1000){
 					trackTitle.innerHTML = tracklist[i].title
+
 				}
 			}
 		}
@@ -650,46 +703,7 @@
 
 
 	</script>
-	<script> //TEXT SCROLL SCRIPT//
-
-	$(function() {
-
-	    var txt = $("#trackTitle");
-	    txt.bind('scroll', function () {
-	        var el = $(this);
-	        // Scroll state machine
-	        var scrollState = el.data("scrollState") || 0;
-	        el.data("scrollState", (scrollState + 1) % 4);
-	        switch (scrollState) {
-	            case 0: // initial wait
-	                el.css({ left: 0 });
-	                el.show();
-	                window.setTimeout(function () {
-	                    el.trigger("scroll");
-	                }, 5000);
-	                break;
-	            case 1: // start scroll
-	                var delta = el.parent().width() - el.width();
-	                if (delta < 0) {
-	                    el.animate({ left: delta }, 2000, "linear", function () {
-	                        el.trigger("scroll");
-	                    });
-	                }
-	                break;
-	            case 2: // delay before scroll back
-	                window.setTimeout(function () {
-	                    el.trigger("scroll");
-	                }, 2000);
-	                break;
-	            case 3: // fade out
-	                el.fadeOut("slow", function () {
-	                    el.trigger("scroll");
-	                });
-	                break;
-	        }
-	    }).trigger("scroll");
-	});
-	</script>	
+	
 	
 	
 	

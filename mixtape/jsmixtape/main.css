@@ -40,32 +40,39 @@
 	left: 0;
 	z-index: 1000;
 	display: none;
+	cursor: pointer;
+
 	}
 
 	.play{background: url('../img/play.png') ;}
 	.pause{background: url('../img/pause.png') ;}
 	#timeline{
-		width: 100%;
-		/*width: calc(100vw - 120px);*/
+		/*width: 100%;*/
+		width: calc(100vw - 120px);
 		height: 60px;
 		/*margin-top: 20px;*/
 		float: left;
-		margin-left :1px;
+		margin-left :60px;
+		cursor: pointer;
+
 		/*margin-right: 60px;*/
 		/*border-radius: 15px;*/
 		/*background: -webkit-linear-gradient(bottom, #000000 99%, #191919 99%, #333333 99%);*/
 		/*background: linear-gradient(to top, #000000 99%, #191919 99%, #333333 99%)*/
-		background: blue;
-		/*background: -webkit-linear-gradient(top, #282828 99%, #191919 99%, #333333 99%);*/
-		/*background: linear-gradient(to top, #282828 99%, #191919 99%, #333333 99%);*/
+		/*background: blue;*/
+		background: -webkit-linear-gradient(top, #282828 99%, #191919 99%, #333333 99%);
+		background: linear-gradient(to top, #282828 99%, #191919 99%, #333333 99%);
 
 	
 	}
 	#playhead{
-		width: 100%;
+		/*width: 100%;*/
+		width: auto;
 		height: 60px;
 		/*border-radius: 50%;*/
+		cursor: pointer;
 		/*margin-top: 1px;*/
+		border-left: solid 1px rgba(255,255,255,0.7);
 		background: -webkit-linear-gradient(top, #000000 99%, #191919 99%, #333333 99%);
 		background: linear-gradient(to top, #000000 99%, #191919 99%, #333333 99%);
 	}
@@ -85,11 +92,15 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      margin-left: 60px;
+      /*margin-left: 60px;*/
       position: absolute;
       z-index: 100;
       top: 0;
       pointer-events:none;
+    }
+    .left{
+    	float: left;
+    	margin-left: 15px;
     }
     #credits li{
       display: table-cell;
@@ -146,6 +157,7 @@
 	z-index: 1;
 	text-align: center;
 	cursor: pointer;
+	border-left: solid 1px #282828;
 }
 #mute, #half{
 	display: none;
@@ -160,6 +172,8 @@
 	z-index: 1;
 	text-align: center;
 	cursor: pointer;
+	border-left: solid 1px #282828;
+
 }
 .icon-volume-up, .icon-mute, .icon-half{
 	color: #282828;
