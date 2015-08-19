@@ -48,9 +48,10 @@ function RefractiveGeometry(SCENE, POS, ROT, SCALE, OFFSET){
         // wireframe: true
     })
     this.material.uniforms["time"].value = this.time;
-    this.material.uniforms["envMap"].value = this.textureCube;
+    // this.material.uniforms["envMap"].value = this.textureCube;
+    // this.material.uniforms["envMap"].value = THREE.ImageUtils.loadTexture("assets/tex/equirect.jpg");
     this.material.uniforms["tMatCap"].value = THREE.ImageUtils.loadTexture("assets/tex/matcap3.jpg");
-    this.material.uniforms["map"].value = this.texture;
+    this.material.uniforms["map"].value = THREE.ImageUtils.loadTexture("assets/tex/bw.png");
     // this.material.uniforms["flipEnvMap"].value = 1;
     this.material.uniforms["noiseScale"].value = 15.0;
     this.material.uniforms["noiseDetail"].value = 0.05;

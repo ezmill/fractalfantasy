@@ -135,7 +135,7 @@ var depthChunck = {
 	].join("\n")
 };
 
-var refractionShader = {
+var equirectShader = {
 
 		uniforms: { 
 					"envMap": { type: "t", value: null },
@@ -203,14 +203,19 @@ var refractionShader = {
 		fragmentShader: [
 
 			"uniform float reflectivity;",
-			"uniform samplerCube envMap;",
+			// "uniform samplerCube envMap;",
+			"uniform sampler2D envMap;",
 			"uniform sampler2D map;",
 			"uniform float flipEnvMap;",
 
 			"varying vec3 vReflect;",
 			"varying vec2 vUv;",
 			"uniform vec3 diffuse;",
-
+			"#define RECIPROCAL_PI2 0.15915494",
+			"float saturate( in float a ) { return clamp( a, 0.0, 1.0 ); }",
+			"vec2  saturate( in vec2 a )  { return clamp( a, 0.0, 1.0 ); }",
+			"vec3  saturate( in vec3 a )  { return clamp( a, 0.0, 1.0 ); }",
+			"vec4  saturate( in vec4 a )  { return clamp( a, 0.0, 1.0 ); }",
 			"void main() {",
 			"	vec3 outgoingLight = vec3( 0.0 );",
 			"	vec4 diffuseColor = vec4( diffuse, 1.0 );",

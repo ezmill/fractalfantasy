@@ -21,6 +21,7 @@ function init() {
 	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 1000000 );
 	// camera = new THREE.OrthographicCamera(window.innerWidth/2, -window.innerWidth/2, window.innerHeight/2, -window.innerHeight/2, -10000,9990)
 	camera.position.z = 1100;
+	// camera.position.z = 1;
 	camera.position.y = 0;
 	controls = new THREE.OrbitControls(camera);
 
