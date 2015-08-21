@@ -130,7 +130,7 @@ var depthChunck = {
 		// "		- z + 1000.0,",
 		// "		1.0);",
 		// "	vec4 pos = vec4(position.x, position.y, -z*0.05 + 1000.0,1.0);"
-		"	vec4 pos = vec4(position.x, position.y, -z*0.05 + 2000.0,1.0);"
+		"	vec4 pos = vec4(position.x, position.y, -z,1.0);"
 		// "	vec4 pos = vec4(position.x, position.y, -z*0.1 ,1.0);"
 		// "	gl_Position = projectionMatrix * modelViewMatrix * pos;"
 
