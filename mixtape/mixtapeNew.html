@@ -467,7 +467,7 @@
 				if(counter%2==0){
 					video.src = 'textures/new1.mp4';
 					video.play();
-					video.webkitExitFullScreen();
+					document.exitFullScreen();
 					// video.controls = false;
 					// video.webkitPlaysInline = "";
 					blue = 1.0;
@@ -476,7 +476,7 @@
 				} else {
 					video.src = 'textures/kinect.mp4';
 					video.play();
-					video.webkitExitFullScreen();
+					document.exitFullScreen();
 					// video.controls = false;
 					// video.webkitPlaysInline = "";
 					blue = 0.0;
