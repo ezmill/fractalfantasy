@@ -69,7 +69,7 @@
 	.pause{background: url('../img/pause.png') ;}
 	#timeline{
 		/*width: 100%;*/
-		width: calc(100vw - 120px);
+		width: calc(100vw - 150px);
 		height: 60px;
 		/*margin-top: 20px;*/
 		float: left;
