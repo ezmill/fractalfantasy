@@ -1,6 +1,6 @@
 var tracklist = [
 	{
-		title: "1. 'ratchet train through the uncanny valley' intro ft. Beatking - Sinjin Hawke & Zora Jones",
+		title: "1. ‘Ratchet Train Through The Uncanny Valley' Intro ft. Beatking - Sinjin Hawke & Zora Jones",
 		time: 0
 	},
 	{
@@ -8,126 +8,123 @@ var tracklist = [
 		time: 40
 	},
 	{
-		title: "3. Triggaaaah (mix fix)",
+		title: "3. Triggaaaah (Instrumental) - Sinjin Hawke & Zora Jones",
 		time: 100
 	},
 	{
-		title: "4. Thast - Gucci Bag (Zora Jones Edit)",	
-		time: 149
+		title: "4. Gucci Bag (Zora Jones Edit)- Thast",	
+		time: 160
 	},
 	{
-		title: "5. Miss Kitty",	
-		time: 218
+		title: "5. Miss Kitty - Beek & Zora Jones",	
+		time: 237
 	},
 	{
-		title: "6. 2 Much Edit",	
-		time: 282
+		title: "6. Too Much (v1984 Edit) - Que",	
+		time: 302
 	},
 	{
-		title: "7. Sh!t (Sinjin Fukk Up)",	
-		time: 465
+		title: "7. Sh!t (Sinjin Fukk Up) - Future",	
+		time: 485
 	},
 	{
-		title: "8. Descent",
-		time: 592
+		title: "8. Descent - Chris Designs & Zora Jones",
+		time: 612
 	},
 	{
-		title: "9. Source Of Conflict",
-		time: 801
+		title: "9. Source Of Conflict - Sinjin Hawke & Zora Jones",
+		time: 821
 	},	
 	{
-		title: "10. Boeystraat - Longstreet",
-		time: 897
+		title: "10. Longstreet (Zora Jones Remix) - Boeystraat",
+		time: 917
 	},	
 	{
-		title: "10. Boeystraat - Longstreet",
-		time: 897
+		title: "11. Perxoflyf - Scratcha DVA",
+		time: 1009
 	},	
 	{
-		title: "11. bonus_perxoflyf",
-		time: 959
+		title: "12. U Next - Skylaurr Rauthkeaux feat. Samantha James",
+		time: 1068
 	},	
 	{
-		title: "12. U Next- Skylaurr Rauthkeaux feat. Samantha James",
-		time: 1048
+		title: "13. Bubble Drip (FF Precious Love Edit) - Byrell The Great",
+		time: 1142
 	},	
 	{
-		title: "13. Byrell - Bubbel Drip (Precious Verse) Boomclap Edit",
-		time: 1121
+		title: "14. She Wants - MikeQ & Divoli S'vere",
+		time: 1244
 	},	
 	{
-		title: "14. She Wants - MikeQ x Divoli S'vere",
-		time: 1209
-	},	
-	{
-		title: "15. LDS MIX - Sliink & Sinjin",
-		time: 1281
+		title: "15. LDS - Dj Sliink & Sinjin Hawke",
+		time: 1302
 	},		
 	{
-		title: "16. DVA_OS8V1_DUB",
-		time: 1440
-	},	{
-		title: "17. Worst Sinjin RMX",
-		time: 1612
+		title: "16. OS8 DUB - Scratcha DVA",
+		time: 1475
+	},	
+	{
+		title: "17. Worst (Sinjin Hawke Remix”) - Scratcha DVA",
+		time: 1633
 	},
 	{
-		title: "18. Since You've Been Away	- Spooky",
-		time: 1807
+		title: "18. Since You've Been Away - Spooky",
+		time: 1800
 	},
 	{
-		title: "19. Jamie Foxx - You Changed Me (Sinjin Hawke & Zora Jones 'Acid Rain' Bootleg)",
-		time: 1875
+		title: "19. You Changed Me (Sinjin Hawke & Zora Jones 'Acid Rain' Bootleg) - Jamie Foxx",
+		time: 1868
 	},
 	{
 		title: "20. In Loving Memory - Sinjin Hawke",
-		time: 1995
+		time: 1988
 	},
 	{
-		title: "21. Birdwalk",
-		time: 2148
+		title: "21. Birdwalk (Sinjin Hawke & Zora Jones Bootleg) - Soulja Boy",
+		time: 2141
 	},
 	{
 		title: "22. Bad Ass - Sasha Go Hard (Zora Jones Edit)",
-		time: 2277
+		time: 2270
 	},
 	{
-		title: "23. yea hoe richelle remix final mix",
-		time: 2351
+		title: "23. Yea Hoe (Richelle Remix) - Gangsta Boo & Sinjin Hawke",
+		time: 2344
 	},
 	{
-		title: "24. dj rashad gantman - lace fro",
-		time: 2523
+		title: "24. Lace Fro - Dj Rashad & Gantman",
+		time: 2517
 	},
 	{
-		title: "25. Manny-real shyt",
-		time: 2602
+		title: "25. Manny - Real Shyt",
+		time: 2596
 	},
 	{
-		title: "26. she gonna go (boomclap edit)",
-		time: 2673
+		title: "26. She Gonna Go (Boomclap Edit) - Dj Rashad",
+		time: 2666
 	},
 	{
 		title: "27. Black Diamond - Jlin",
-		time: 2768
+		time: 2762
 	},
 	{
-		title: "28. The Zone",
-		time: 2866
+		title: "28. The Zone - v1984 & Zora Jones",
+		time: 2835
 	},
 	{
-		title: "30. Rashad, Spinn & Sinjin - Monterrey (Choir Mix)",
-		time: 2938
+		title: "29. Monterrey - Dj Rashad, Dj Spinn & Sinjin Hawke",
+		time: 2931
 	},
 	{
-		title: "31. Dark Matter",
-		time: 3094
+		title: "30. Dark Matter - Jlin & Zora Jones",
+		time: 3084
 	},
 	{
-		title: "32. Loud",
-		time: 3190
+		title: "31. Loud - Heavee, Sinjin Hawke & Zora Jones",
+		time: 3183
 	},
 	{
-		title: "33. Lil B - Based Till The Death (Rare Outro Edit)",
-		time: 3335
+		title: "32. Lil B - Based Till The Death (Rare Outro Edit)",
+		time: 3386
 	},
 ]  
