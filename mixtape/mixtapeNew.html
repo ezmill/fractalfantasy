@@ -20,11 +20,7 @@
 			position: relative;
 			white-space: nowrap;
 			}
-			#titleContainer{
-			display: inline-block;
-			width: 200px;
-			overflow: hidden;
-			}
+
 
 		</style>
 	</head>
@@ -487,6 +483,7 @@
 	            case 1: // start scroll
 	                var delta = txt.parent().width() - txt.width();
 	                if (delta < 0) {
+	                	console.log("scrolling");
 	                    txt.animate({ left: delta }, 2000, "linear", function () {
 	                        txt.trigger("scroll");
 	                    });
@@ -539,13 +536,15 @@
 
 		var icons = document.getElementById('icons'); // timeline
 		var volume = document.getElementById('volume'); // timeline
+		var volumeContainer = document.getElementById('volumeContainer'); // timeline
 		var half = document.getElementById('half'); // timeline
 		var mute = document.getElementById('mute'); // timeline
 		var volumeBar = document.getElementById('volumeBar'); // timeline
 		var innerVolume = document.getElementById('innerVolume'); // timeline
 		var download = document.getElementsByClassName('download'); // timeline
 		// timeline width adjusted for playhead
-		var timelineWidth = window.innerWidth -150;
+		console.log(volumeContainer.offsetWidth);
+		var timelineWidth = window.innerWidth - (volumeContainer.offsetWidth + 60);
 		var timelineHeight = 60;
 		var counter = 0;
 		var volumeBarHeight = 120;
