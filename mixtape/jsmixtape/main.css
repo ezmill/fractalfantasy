@@ -274,11 +274,12 @@
 	0% { height: 120px; }
 	100% { height: 0px; }
 }
-			#titleContainer{
-			display: inline-block;
-			width: 200px;
-			overflow: hidden;
-			}
+#titleContainer{
+	display: inline-block;
+	width: 200px;
+	overflow: hidden;
+	/*text-align: center;*/
+}
 @media screen and (orientation:landscape) { 
 	body{
 		color: red;
