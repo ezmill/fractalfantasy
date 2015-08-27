@@ -55,15 +55,15 @@
     </div>
         <div id="icons">
        <div id="volumeContainer">
-	       	<i class="demo-icon icon-download download">&#xe801;</i>
+	       	<a href="https://api.soundcloud.com/tracks/220575924/download?secret_token=s-lNd99&client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&oauth_token=1-138878-11750333-43e80c8bc71589"><i class="demo-icon icon-download download">&#xe801;</i></a>
           <i id="volume" class="volume demo-icon icon-volume-up">&#xe805;</i> 
         </div>
         <div id="halfContainer">
-	       	<i class="demo-icon icon-download download">&#xe801;</i>
+	       	<a href="https://api.soundcloud.com/tracks/220575924/download?secret_token=s-lNd99&client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&oauth_token=1-138878-11750333-43e80c8bc71589"><i class="demo-icon icon-download download">&#xe801;</i></a>
 	        <i id="half" class="volume demo-icon icon-half">&#xe804;</i> 
         </div>
         <div id="muteContainer">
-	       	<i class="demo-icon icon-download download">&#xe801;</i>
+	       	<a href="https://api.soundcloud.com/tracks/220575924/download?secret_token=s-lNd99&client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&oauth_token=1-138878-11750333-43e80c8bc71589"><i class="demo-icon icon-download download">&#xe801;</i></a>
             <i id="mute" class="volume demo-icon icon-mute">&#xe803;</i> 
         </div> 
     	</div>
@@ -454,32 +454,32 @@
 	    txt.bind('scroll', function () {
 	        var el = $(this);
 	        // Scroll state machine
-	        var scrollState = el.data("scrollState") || 0;
-	        el.data("scrollState", (scrollState + 1) % 4);
+	        var scrollState = txt.data("scrollState") || 0;
+	        txt.data("scrollState", (scrollState + 1) % 4);
 	        switch (scrollState) {
 	            case 0: // initial wait
-	                el.css({ left: 0 });
-	                el.show();
+	                txt.css({ left: 0 });
+	                txt.show();
 	                window.setTimeout(function () {
-	                    el.trigger("scroll");
+	                    txt.trigger("scroll");
 	                }, 5000);
 	                break;
 	            case 1: // start scroll
-	                var delta = el.parent().width() - el.width();
+	                var delta = txt.parent().width() - txt.width();
 	                if (delta < 0) {
-	                    el.animate({ left: delta }, 2000, "linear", function () {
-	                        el.trigger("scroll");
+	                    txt.animate({ left: delta }, 2000, "linear", function () {
+	                        txt.trigger("scroll");
 	                    });
 	                }
 	                break;
 	            case 2: // delay before scroll back
 	                window.setTimeout(function () {
-	                    el.trigger("scroll");
+	                    txt.trigger("scroll");
 	                }, 2000);
 	                break;
 	            case 3: // fade out
-	                el.fadeOut("slow", function () {
-	                    el.trigger("scroll");
+	                txt.fadeOut("slow", function () {
+	                    txt.trigger("scroll");
 	                });
 	                break;
 	        }
@@ -537,10 +537,12 @@
 		SC.initialize({
 		  client_id: "cd406b735309b14551e8af7a54c8e6f3"
 		});
+		//220575924
 		SC.stream("/tracks/219210929", {
 		  useHTML5Audio: true,
 		  preferFlash: false
 		}, function(sound) {
+			console.log(sound);
 		  song = sound;
 		  sound._player.on("positionChange", function(state){
 		  		update();
