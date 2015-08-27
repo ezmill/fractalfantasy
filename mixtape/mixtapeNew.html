@@ -286,6 +286,8 @@
 
 
 				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'touchstart', onDocumentTouchMove, false );
+				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
 			}
 
@@ -296,6 +298,24 @@
 
 			    unMappedMouseX = (event.clientX );
 			    unMappedMouseY = (event.clientY );
+			    mouseX = map(unMappedMouseX, window.innerWidth, -1.0,1.0);
+			    mouseY = map(unMappedMouseY, window.innerHeight, -1.0,1.0);
+			    
+			    
+			    // for(var i = 0; i < fbMaterial.fbos.length; i++){
+			    //   fbMaterial.fbos[i].material.uniforms.mouse.value = new THREE.Vector2(mouseX, mouseY);
+			    // }
+    
+
+			}
+
+			function onDocumentTouchMove( event ) {
+
+				mouse.x = ( event.touches[0].clientX - window.innerWidth / 2 ) * 8;
+				mouse.y = ( event.touches[0].clientY - window.innerHeight / 2 ) * 8;
+
+			    unMappedMouseX = (event.touches[0].clientX );
+			    unMappedMouseY = (event.touches[0].clientY );
 			    mouseX = map(unMappedMouseX, window.innerWidth, -1.0,1.0);
 			    mouseY = map(unMappedMouseY, window.innerHeight, -1.0,1.0);
 			    
