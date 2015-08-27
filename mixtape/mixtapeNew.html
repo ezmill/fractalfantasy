@@ -22,10 +22,15 @@
 
 			}
 			.marquee{
-				animation: marquee  8s linear infinite;
+				-webkit-animation: marquee  8s linear infinite;
+				        animation: marquee  8s linear infinite;
 			}
 			.no-marquee{
 
+			}
+			@-webkit-keyframes marquee {
+			    0%   { text-indent: 100% }
+			    100% { text-indent: -200% }
 			}
 			@keyframes marquee {
 			    0%   { text-indent: 100% }
