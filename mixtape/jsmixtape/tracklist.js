@@ -1,7 +1,8 @@
 var tracklist = [
 	{
 		title: "1. ‘Ratchet Train Through The Uncanny Valley' Intro ft. Beatking - Sinjin Hawke & Zora Jones",
-		time: 0
+		time: 0,
+		tooLong: true
 	},
 	{
 		title: "2. Blizzard (Devils Mix) - Wiley",
@@ -9,7 +10,8 @@ var tracklist = [
 	},
 	{
 		title: "3. Triggaaaah (Instrumental) - Sinjin Hawke & Zora Jones",
-		time: 100
+		time: 100,
+		tooLong: true
 	},
 	{
 		title: "4. Gucci Bag (Zora Jones Edit)- Thast",	
@@ -49,7 +51,8 @@ var tracklist = [
 	},	
 	{
 		title: "13. Bubble Drip (FF Precious Love Edit) - Byrell The Great",
-		time: 1142
+		time: 1142,
+		tooLong: true
 	},	
 	{
 		title: "14. She Wants - MikeQ & Divoli S'vere",
@@ -73,7 +76,8 @@ var tracklist = [
 	},
 	{
 		title: "19. You Changed Me (Sinjin Hawke & Zora Jones 'Acid Rain' Bootleg) - Jamie Foxx",
-		time: 1868
+		time: 1868,
+		tooLong: true
 	},
 	{
 		title: "20. In Loving Memory - Sinjin Hawke",
@@ -81,7 +85,8 @@ var tracklist = [
 	},
 	{
 		title: "21. Birdwalk (Sinjin Hawke & Zora Jones Bootleg) - Soulja Boy",
-		time: 2141
+		time: 2141,
+		tooLong: true
 	},
 	{
 		title: "22. Bad Ass - Sasha Go Hard (Zora Jones Edit)",
@@ -89,7 +94,8 @@ var tracklist = [
 	},
 	{
 		title: "23. Yea Hoe (Richelle Remix) - Gangsta Boo & Sinjin Hawke",
-		time: 2344
+		time: 2344,
+		tooLong: true
 	},
 	{
 		title: "24. Lace Fro - Dj Rashad & Gantman",

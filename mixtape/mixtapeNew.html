@@ -18,8 +18,13 @@
 			display: inline-block;
 			position: relative;
 			white-space: nowrap;
-			animation: marquee  8s linear infinite;
 		    /*-webkit-marquee-style: alternate;*/
+
+			}
+			.marquee{
+				animation: marquee  8s linear infinite;
+			}
+			.no-marquee{
 
 			}
 			@keyframes marquee {
@@ -475,12 +480,17 @@
 		<script src="jsmixtape/soundcloudAPI.js"></script>
 		<script src="//connect.soundcloud.com/sdk-2.0.0.js"></script>
 		<script src="jsmixtape/tracklist.js"></script>
-		<script type='text/javascript' src='//cdn.jsdelivr.net/jquery.marquee/1.3.1/jquery.marquee.min.js'></script>
 	<script> //TEXT SCROLL SCRIPT//
 		// $('.marquee').marquee();
-	// $(function() {
-
-	//     var txt = $("#trackTitle");
+function checkText(){
+    var txt = $("#trackTitle");
+    var delta = txt.parent().width() - txt.width();
+    if (currentTrack.tooLong) {
+    	txt.addClass("marquee");
+    } else {
+    	txt.removeClass("marquee");
+    }
+}
 
 	//     txt.bind('scroll', function () {
 	//         var el = $(this);
@@ -496,13 +506,12 @@
 	//                 }, 5000);
 	//                 break;
 	//             case 1: // start scroll
-	//                 var delta = txt.parent().width() - txt.width();
-	//                 if (delta < 0) {
+
 	//                 	console.log("scrolling");
 	//                     txt.animate({ left: delta }, 2000, "linear", function () {
 	//                         txt.trigger("scroll");
 	//                     });
-	//                 }
+	                // }
 	//                 break;
 	//             case 2: // delay before scroll back
 	//                 window.setTimeout(function () {
@@ -588,6 +597,7 @@
 		var currentTime;
 		var relativePosition;
 		var volumeCounter = 0;
+		var currentTrack;
 		// icons.addEventListener("click", function(event){
 		// 	// volumeBar.style.display = "block";
 		// 	console.log(event);
@@ -805,12 +815,14 @@
 			relativePosition = currentTime/currentDuration;
 			playhead.style.marginLeft = (timelineWidth*relativePosition) + "px";
 			updateTitle();
+			checkText();
+
 		}
 		function updateTitle(){
 			for(var i = 0; i < tracklist.length; i++){
 				if(currentTime>(tracklist[i].time)*1000){
+					currentTrack = tracklist[i];
 					trackTitle.innerHTML = tracklist[i].title
-
 				}
 			}
 		}
