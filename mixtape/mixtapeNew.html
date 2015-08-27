@@ -467,16 +467,18 @@
 				if(counter%2==0){
 					video.src = 'textures/new1.mp4';
 					video.play();
-					video.controls = false;
-					video.webkitPlaysInline = "";
+					video.webkitExitFullScreen();
+					// video.controls = false;
+					// video.webkitPlaysInline = "";
 					blue = 1.0;
 					document.getElementById("song1button").style.display = "block";
 					document.getElementById("song2button").style.display = "none";
 				} else {
 					video.src = 'textures/kinect.mp4';
 					video.play();
-					video.controls = false;
-					video.webkitPlaysInline = "";
+					video.webkitExitFullScreen();
+					// video.controls = false;
+					// video.webkitPlaysInline = "";
 					blue = 0.0;
 					document.getElementById("song1button").style.display = "none";
 					document.getElementById("song2button").style.display = "block";
