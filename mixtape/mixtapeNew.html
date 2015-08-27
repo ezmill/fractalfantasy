@@ -190,8 +190,16 @@
 			var mouseX = 0, mouseY = 0;
 			var time = 0;
 			var texture;
-			var windowHalfX = window.innerWidth / 2;
-			var windowHalfY = window.innerHeight / 2;
+
+			// var renderSize = new THREE.Vector2(window.innerWidth, window.innerHeight - 60);
+			var renderSize = {
+				w:window.innerWidth, 
+				h:window.innerHeight - 60
+			};
+
+			var windowHalfX = renderSize.w / 2;
+			var windowHalfY = renderSize.h / 2;
+
 
 			var start = Date.now(); 
 			var gradient, tex;
@@ -220,7 +228,7 @@
 				center = new THREE.Vector3();
 				center.z = - 1000;
 
-				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 50, renderSize.w / renderSize.h, 1, 10000 );
 				camera.position.set( 0, 0, 500 );
 				scene.add( camera );
 
@@ -289,7 +297,7 @@
 
 
 				renderer = new THREE.WebGLRenderer({preserveDrawingBuffer:true});
-				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setSize( renderSize.w, renderSize.h );
 				renderer.setClearColor(0x000000,1.0);
 				container.appendChild( renderer.domElement );
 
@@ -307,44 +315,34 @@
 
 			}
 			function onWindowResize(){
-				renderer.setSize(window.innerWidth, window.innerHeight);
-			    camera.aspect = window.innerWidth/window.innerHeight;
+				renderSize.w = window.innerWidth;
+				renderSize.h = window.innerHeight - 60;
+				renderer.setSize(renderSize.w, renderSize.h);
+			    camera.aspect = renderSize.w/renderSize.h;
 				camera.updateProjectionMatrix();
-				timelineWidth = window.innerWidth - (volumeContainer.offsetWidth + 60);
+				timelineWidth = renderSize.w - (volumeContainer.offsetWidth + 60);
 			}
 			function onDocumentMouseMove( event ) {
 
-				mouse.x = ( event.clientX - window.innerWidth / 2 ) * 8;
-				mouse.y = ( event.clientY - window.innerHeight / 2 ) * 8;
+				mouse.x = ( event.clientX - renderSize.w / 2 ) * 8;
+				mouse.y = ( event.clientY - renderSize.h / 2 ) * 8;
 
 			    unMappedMouseX = (event.clientX );
 			    unMappedMouseY = (event.clientY );
-			    mouseX = map(unMappedMouseX, window.innerWidth, -1.0,1.0);
-			    mouseY = map(unMappedMouseY, window.innerHeight, -1.0,1.0);
-			    
-			    
-			    // for(var i = 0; i < fbMaterial.fbos.length; i++){
-			    //   fbMaterial.fbos[i].material.uniforms.mouse.value = new THREE.Vector2(mouseX, mouseY);
-			    // }
-    
+			    mouseX = map(unMappedMouseX, renderSize.w, -1.0,1.0);
+			    mouseY = map(unMappedMouseY, renderSize.h, -1.0,1.0);
 
 			}
 
 			function onDocumentTouchMove( event ) {
 
-				mouse.x = ( event.touches[0].clientX - window.innerWidth / 2 ) * 8;
-				mouse.y = ( event.touches[0].clientY - window.innerHeight / 2 ) * 8;
+				mouse.x = ( event.touches[0].clientX - renderSize.w / 2 ) * 8;
+				mouse.y = ( event.touches[0].clientY - renderSize.h / 2 ) * 8;
 
 			    unMappedMouseX = (event.touches[0].clientX );
 			    unMappedMouseY = (event.touches[0].clientY );
-			    mouseX = map(unMappedMouseX, window.innerWidth, -1.0,1.0);
-			    mouseY = map(unMappedMouseY, window.innerHeight, -1.0,1.0);
-			    
-			    
-			    // for(var i = 0; i < fbMaterial.fbos.length; i++){
-			    //   fbMaterial.fbos[i].material.uniforms.mouse.value = new THREE.Vector2(mouseX, mouseY);
-			    // }
-    
+			    mouseX = map(unMappedMouseX, renderSize.w, -1.0,1.0);
+			    mouseY = map(unMappedMouseY, renderSize.h, -1.0,1.0);
 
 			}
 
@@ -353,8 +351,6 @@
 				requestAnimationFrame( animate );
 
 				render();
-			    // fbDraw();
-
 			}
 
 			function render() {
@@ -370,99 +366,6 @@
 
 			}
 
-			function fbInit(){
-
-			    fbScene = new THREE.Scene();
-			    fbCamera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -10000, 10000 );
-			    fbCamera.position.set(0,0,0);
-
-			    fbCamera2 = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100000);
-			    fbCamera2.position.z = 750;
-
-			    // controls = new THREE.OrbitControls(fbCamera2);
-
-
-			    fbRenderer = new THREE.WebGLRenderer({ preserveDrawingBuffer: true/*, alpha: true*/});
-			    fbRenderer.setClearColor(0xffffff, 1.0);
-			    fbRenderer.setSize(window.innerWidth/sizeMult, window.innerHeight/sizeMult);
-			    
-			    container.appendChild(fbRenderer.domElement);
-
-			    fbScene = new THREE.Scene();
-			    
-
-			    // canv = document.createElement("CANVAS");
-			    // canv.width = window.innerWidth;
-			    // canv.height = window.innerHeight;
-			    // ctx = canv.getContext("2d");
-			    // ctx.fillStyle = "white";
-			    // ctx.fillRect(0,0,window.innerWidth, window.innerHeight);
-			    // ctx.drawImage(renderer.domElement,0,0, window.innerWidth, window.innerHeight);
-			    fbTexture = new THREE.Texture(renderer.domElement);
-			    fbTexture.minFilter = fbTexture.magFilter = THREE.NearestFilter;
-			    // fbTexture = THREE.ImageUtils.loadTexture("tex/rach.jpg")
-			    // fbTexture = THREE.ImageUtils.loadTexture("tex/rgblcd.jpg");
-			    // var clone = rtt.clone();
-			    fbMesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(window.innerWidth, window.innerHeight), new THREE.MeshBasicMaterial({map:fbTexture}));
-			    fbScene.add(fbMesh);
-
-			    var customShaders = new CustomShaders();
-			    var customShaders2 = new CustomShaders();
-
-			    fbShaders = [ 
-			        customShaders.reposShader, 
-			        customShaders.blurShader, 
-			        customShaders.diffShader2, 
-			        customShaders.reposShader, 
-			        customShaders2.sharpenShader,
-			        customShaders.passShader
-			    ];
-
-			    // fbShaders = [ 
-			    //     customShaders.reposShader, 
-			    //     customShaders.flowShader, 
-			    //     customShaders.diffShader, 
-			    //     customShaders2.reposShader, 
-			    //     customShaders2.passShader,
-			    //     customShaders.passShader
-			    // ];
-
-			    // fbMaterial = new FeedbackMaterial(fbRenderer, fbScene, fbCamera, fbTexture, fbShaders);
-			        
-			    // fbMaterial.init();
-
-
-			    document.addEventListener( 'keydown', function(){screenshot(fbRenderer)}, false );
-			    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-			    // document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-			    // window.addEventListener( 'resize', onWindowResize, false );
-
-			}
-			function fbDraw(){
-    
-			    // ctx.fillStyle = "white";
-			    // ctx.fillRect(0,0,window.innerWidth, window.innerHeight);
-			    // ctx.drawImage(renderer.domElement, 0, 0, window.innerWidth, window.innerHeight);
-			    time+=0.01;
-
-			    // for(var i = 0; i < fbMaterial.fbos.length; i++){
-			    //   fbMaterial.fbos[i].material.uniforms.time.value = time;
-			    //   fbMaterial.fbos[i].material.uniforms.mouse.value = new THREE.Vector2(Math.sin(time), Math.cos(time));
-			    // }
-			    fbTexture.needsUpdate = true;
-			        
-			    // fbMaterial.update();
-			    // fbMaterial.expand(1.01);
-
-			    fbRenderer.render(fbScene, fbCamera);
-
-			    // fbMaterial.getNewFrame();
-			    // fbMaterial.swapBuffers();
-
-			    // capturer.capture( fbRenderer.domElement );
-
-			    
-			}
 			function switchVid(){
 				if(counter%2==0){
 					video.src = 'textures/new1.mp4';
