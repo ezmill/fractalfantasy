@@ -1,0 +1,89 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>PLAYER</title>
+		<meta charset="utf-8" name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+		.logo-img path {
+ 		 fill: red;
+		}
+		</style>
+		<link rel="stylesheet" type="text/css" href="./embedplayer_files/ffplayer2.css">
+	</head>
+
+	<body bgcolor="black" onLoad="init()">
+	
+		<button id="pButton" class="play" style="width: 30px; height: 30px; left: 15px; bottom: 15px; display: block; background-size: 100% 100%;"></button>
+	
+		<div id="audioplayer">
+			<div id="timeline">
+				<ul id="credits">
+				 <div class="left">
+					 
+					 <li>
+					 
+						<b>BASED &amp; CONFUSED MIX</b> | ZORA JONES &amp; SINJIN HAWKE<br>
+						
+						<span id="timer">0:00</span> - <i> Visual at <a href="http://fractalfantasy.net" target="_blank">Fractal Fantasy</a> </i><br> <div id="d_debug" class="embedtxt" style="font-size:8"></div> 
+						
+						<div id="titleContainer"><span id="trackTitle"></span></div> 
+						
+					</li>
+					
+				 </div>
+				</ul>
+		  	
+		  		<div id="playhead"></div>	
+			</div>
+		
+			<div id="icons">
+			
+					<div id="volumeContainer">
+						<a class="embed-button"><i class="demo-icon icon-download embed"></i></a>
+						<a class="download-button" href="https://api.soundcloud.com/tracks/220575924/download?secret_token=s-lNd99&client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&oauth_token=1-138878-11750333-43e80c8bc71589"><i class="demo-icon icon-download download"></i></a>
+						<i id="volume" class="volume demo-icon icon-volume-up"></i> 
+					</div>
+					<div id="halfContainer">
+						<a class="embed-button"><i class="demo-icon icon-download embed"></i></a>
+						<a class="download-button" href="https://api.soundcloud.com/tracks/220575924/download?secret_token=s-lNd99&client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&oauth_token=1-138878-11750333-43e80c8bc71589"><i class="demo-icon icon-download download"></i></a>
+						 <i id="half" class="volume demo-icon icon-half"></i> 
+					</div>
+					<div id="muteContainer">
+						<a class="embed-button"><i class="demo-icon icon-download embed"></i></a>
+						<a class="download-button" href="https://api.soundcloud.com/tracks/220575924/download?secret_token=s-lNd99&client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&oauth_token=1-138878-11750333-43e80c8bc71589"><i class="demo-icon icon-download download"></i></a>
+						<i id="mute" class="volume demo-icon icon-mute"></i> 
+					</div> 
+				
+					
+			</div>
+			
+		</div>
+		
+		
+		<div id="embed" style="position:absolute; z-index=10; right: 80px; top: 16px;">
+				
+		<img class="logo-img" width="30px"  src="./embedplayer_files/embed.svg">
+				
+		</div>  
+		
+			
+				<br> <br> <br> <br> 
+		
+				<br> <br> <br> <br> 
+
+				
+				
+				<textarea style="display: none;" id="fe_text">
+					<iframe width="100%" height="62" scrolling="no" frameborder="no" src="http://fractalfantasy.net/ffplayer.html"></iframe>
+				</textarea>
+
+				
+		<script src="./embedplayer_files/tracklist.js"></script>
+		<script src="./embedplayer_files/ffplayer.js"></script>
+		<script type="text/javascript">
+
+	
+	</script>
+	
+	
+</body></html>
