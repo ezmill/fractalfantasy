@@ -25,7 +25,7 @@ var bluey = 0.0;
 var goo = 85.0;
 var blurWidth = 1.0;
 var lightWidth = 9.5;
-var lightBrightness = 0.0;
+var lightBrightness = 1.0;
 
 var topLeft = document.getElementById("topLeft");
 var topRight = document.getElementById("topRight");
@@ -294,6 +294,8 @@ function bezierY(x1, y1, x2, y2, hue){
     ctx.stroke();  
 }
 var time = 2.0;
+var rot = 0.0;
+
 function many(){
     time+=0.01;
     ctx.fillStyle = "white";
@@ -315,16 +317,26 @@ function many(){
 	greeny = Math.floor(map(j, h, 0, 255));
 	bluey = Math.floor(map(0.5+0.5*Math.sin(time/2), 1, 0, 255));
     	var color = "rgba("+redy+","+greeny+", "+bluey+", "+alpha+")";
-        bezierY(0,j, canvas.width, j, "#000000" /*hslaColor(j/5, 100, 50, alpha)*/);  
+        // bezierY(0,j, canvas.width, j, "#000000" /*hslaColor(j/5, 100, 50, alpha)*/);  
     }
     for(var i = -canvas.width; i < canvas.width*2; i+=distX){
 	// redx = Math.floor(map(0.5+0.5*Math.cos(time), 1, 125, 200));
 	// greenx = 200;
 	// bluex = 255;
     	var color = "rgba("+redx+","+greenx+", "+bluex+", "+alpha+")";
-        bezierX(i, 0, i, canvas.height, color /*hslaColor(i/5, 100, 50, alpha)*/);  
+        // bezierX(i, 0, i, canvas.height, color /*hslaColor(i/5, 100, 50, alpha)*/);  
 
     }
+
+	var testImg = new Image();
+	testImg.onload = function(){
+		// ctx.translate(canvas.width / 2, canvas.height / 2);
+		ctx.rotate(Math.PI/4);
+    	ctx.drawImage(testImg, 0,0);
+
+	}
+	testImg.src = "Uncanny Valley_files/test.png";
+
     //ctx.rotate(Math.PI/1000);
 
 
@@ -339,6 +351,7 @@ function onMouseDown(){
 
 }
 // many();
+
 function draw(){
 	time+=0.001;
     camTex.needsUpdate = true;
@@ -369,6 +382,15 @@ function draw(){
     var a = rtFB;
     rtFB = rt1;
     rt1 = a;
+
+    rot+=0.01;
+    // ctx.save();
+
+    // ctx.drawImage(testImg, 0,0, canvas.width, canvas.height);
+	// ctx.translate(canvas.width / 2, canvas.height / 2);
+	ctx.rotate(rot);
+	// ctx.restore();
+
 
 }
 

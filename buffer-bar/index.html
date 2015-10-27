@@ -1,0 +1,131 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	
+	<title>FF PLAYER</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="ffplayer/ffplayer.css">
+</head>
+
+
+<body bgcolor="black">
+	
+	<script src="ffplayer/tracklist-pointclouds.js"></script>
+	<script src="ffplayer/ffplayer.js"></script>
+	<script>
+		var ffplayer = new FFPlayer({
+
+/*
+   _____   _____    __ __    __       _____   __  __    _____ __ __    
+ /\_____\/\_____\  /_/\__/\ /\_\     /\___/\/\  /\  /\/\_____/_/\__/\  
+( (  ___( (  ___/  ) ) ) ) ( ( (    / / _ \ \ \ \/ / ( (_____) ) ) ) ) 
+ \ \ \_  \ \ \_   /_/ /_/ / \ \_\   \ \(_)/ /\ \__/ / \ \__\/_/ /_/_/  
+ / / /_\ / / /_\  \ \ \_\/  / / /__ / / _ \ \ \__/ /  / /__/\ \ \ \ \  
+/ /____// /____/   )_) )   ( (_____( (_( )_) )/ / /  ( (_____)_) ) \ \ 
+\/_/    \/_/       \_\/     \/_____/\/_/ \_\/ \/_/    \/_____\_\/ \_\/ 
+											
+							 BETA 1.0					
+				       CODE BY EZRA MILLER
+				      DESIGN BY SINJIN HAWKE 	  
+
+NOTES:
+-dont use audio files with pictures embedded in them, it makes the player run slow.
+-for embedCode and URL u only need to change whats inside of the value=""
+
+*/
+
+// SOUNDCLOUD SINGLE MODE
+
+			// mode: 'sc', 
+			// src: '229265226',
+			// useTracklist: true,
+			// artist: "ZORA JONES & SINJIN HAWKE",
+			// title: 'POINTCLOUDS',
+			// autoPlay: true, 
+			// description: "Code by Ezra Miller & Mr Doob",
+// 
+			// embedCode: "<div class='block-embed'><form class='block-embed-form'><label for='btn-input-embed'>EMBED</label><input id='btn-input-embed' type='text' value='<iframe width=&quot;500px&quot; height=&quot;60px&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; src=&quot;http://fractalfantasy.net/ffplayer-pointclouds-embed.html&quot;></iframe>'><br><label for='btn-input-embed'>URL</label><input id='btn-input-embed' type='text' value='http://fractalfantasy.net/#/3/pointclouds'></form></div>",
+// 
+			// downloadLink: 'http://fractalfantasy.net/audio/POINTCLOUDS.mp3',
+			// embed: true,
+			// download: true,
+			// volume: true,
+
+// AUDIO SINGLE MODE
+			mode: 'audio',
+			src: '01 Iron Cages (feat. Odile Myrtil).mp3',
+			// src: 'https://api.soundcloud.com/tracks/228103835/download?client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&oauth_token=1-138878-2365576-136d9507b3c182b',
+			description: "Code by Ezra Miller & Mr Doob",
+			autoPlay: true, 
+			artist: 'ZORA JONES & SINJIN HAWKE',
+			title: 'POINTCLOUDS',
+			embedCode: '<div class="block-embed"><form class="block-embed-form"><label for="btn-input-embed">EMBED</label><input id="btn-input-embed" type="text" value="<iframe width= &quot 500px &quot height= &quot 60px &quot scrolling= &quot no &quot frameborder= &quot 0 &quot src= &quot http://fractalfantasy.net/ffplayer-pointclouds-embed.html &quot></iframe>" ><br><label for="btn-input-embed">URL</label><input id="btn-input-embed" type="text" value="http://fractalfantasy.net/#/3/pointclouds"></form></div>',
+			downloadLink: 'https://api.soundcloud.com/tracks/228103835/download?client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&amp;oauth_token=1-138878-2365576-aefcd2b3c0a66f4',
+			useTracklist: true,
+			embed: true,
+			download: true,
+			volume: true,
+
+
+// SOUNDCLOUD PLAYLIST MODE
+			// mode: 'sc playlist',
+			// src: '137573264',
+			// description: "From the Original Video Series",
+			// autoPlay: true,
+			// embedCode: '<div class="block-embed"><form class="block-embed-form"><label for="btn-input-embed">EMBED</label><input id="btn-input-embed" type="text" value="<iframe width= &quot 500px &quot height= &quot 60px &quot scrolling= &quot no &quot frameborder= &quot 0 &quot src= &quot http://fractalfantasy.net/ffplayer-pointclouds-embed.html &quot></iframe>" ><br><label for="btn-input-embed">URL</label><input id="btn-input-embed" type="text" value="http://fractalfantasy.net/#/3/pointclouds"></form></div>',
+			// downloadLink: 'https://api.soundcloud.com/tracks/228103835/download?client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&amp;oauth_token=1-138878-2365576-aefcd2b3c0a66f4'
+			// embed: true,
+			// download: true,
+			// volume: true,
+
+		
+			
+// AUDIO PLAYLIST MODE
+			// mode: 'audio playlist',
+			// src: [
+			// 'http://fractalfantasy.net/audio/visceralminds/1VClipse.mp3',
+			// 'http://fractalfantasy.net/audio/visceralminds/2Ferrofluid.mp3',
+			// 'http://fractalfantasy.net/audio/visceralminds/3FlashAlert.mp3',
+			// 'http://fractalfantasy.net/audio/visceralminds/4Thunderscan.mp3',
+			// 'http://fractalfantasy.net/audio/visceralminds/5Moonstar.mp3',
+			// 'http://fractalfantasy.net/audio/visceralminds/6Neutrino.mp3',
+			// 'http://fractalfantasy.net/audio/visceralminds/7ThunderscanVIP.mp3',
+			// 'http://fractalfantasy.net/audio/visceralminds/8NeutrinoVIP.mp3',
+			// 	],
+			// title: "Visceral Minds",
+			// description: "From the Original Video Series",
+			// artist: [
+			// 'Sinjin Hawke & Zora Jones',
+			// 'P. Morris & Sinjin Hawke',
+			// 'L-Vis 1990 & Sinjin Hawke',
+			// 'MikeQ & Sinjin Hawke',
+			// 'Zora Jones',
+			// 'DJ Taye & Zora Jones',
+			// 'MikeQ & Sinjin Hawke',
+			// 'DJ Taye & Zora Jones',
+			// ],
+			// songTitle: ["VClipse", "Ferrofluid", "Flash Alert", "ThunderScan", "Moonstar", "Neutrino", "Thunderscan VIP", "Neutrino VIP"],
+			// autoPlay: true, 
+			// embedCode: '<div class="block-embed"><form class="block-embed-form"><label for="btn-input-embed">EMBED</label><input id="btn-input-embed" type="text" value="<iframe width= &quot 500px &quot height= &quot 60px &quot scrolling= &quot no &quot frameborder= &quot 0 &quot src= &quot http://fractalfantasy.net/ffplayer-pointclouds-embed.html &quot></iframe>" ><br><label for="btn-input-embed">URL</label><input id="btn-input-embed" type="text" value="http://fractalfantasy.net/#/3/pointclouds"></form></div>',
+			// downloadLink: 'https://api.soundcloud.com/tracks/228103835/download?client_id=02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea&amp;oauth_token=1-138878-2365576-aefcd2b3c0a66f4'
+			// embed: true,
+			// download: true,
+			// volume: true,
+
+		});
+	</script>
+
+	  <script type="text/javascript"> 
+    // var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));  
+    // if (mobile) { 
+    //     // alert("MOBILE DEVICE!!");
+    //     $('#volumeContainer').css('display', 'none'); // OR you can use $('.navWrap').hide();
+    // } 
+    // else 
+    // { 
+    //    // alert("NOT A MOBILE DEVICE!!"); 
+    // }
+</script> 
+	
+
+ </body></html>
